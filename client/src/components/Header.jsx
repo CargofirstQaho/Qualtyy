@@ -55,7 +55,7 @@ const Header = ({ user, onLogout, onAuthClick }) => {
               <Leaf className="h-6 w-6 text-white" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              Quality.AI
+              Qualty.AI
             </span>
           </div>
 
