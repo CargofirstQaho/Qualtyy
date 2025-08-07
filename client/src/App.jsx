@@ -169,6 +169,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import About from "./components/About";
 
 
 const App = () => {
@@ -193,8 +194,9 @@ const App = () => {
       />
       <Hero />
       <Services />
-      {/* <About /> */}
+      <About />
       <Contact />
+      <Footer/>
     </div>
   );
 };
