@@ -142,6 +142,8 @@
 
 import React from 'react';
 import { Award, Users, Target, TrendingUp, ArrowRight } from 'lucide-react';
+import Services1 from '../assets/services1.png';
+import Services2 from '../assets/services2.png';
 
 const About = () => {
   const achievements = [
@@ -423,7 +425,7 @@ const About = () => {
         <div style={aboutStyles.aboutVisual}>
           <div style={aboutStyles.visualGlow}></div>
           <img 
-            src="https://images.pexels.com/photos/8728382/pexels-photo-8728382.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+            src={Services1} 
             alt="Quality inspection technology"
             style={{...aboutStyles.aboutImage, transform: 'translateY(-20px)'}}
             onMouseOver={(e) => e.target.style.transform = 'translateY(-20px) scale(1.05)'}
@@ -444,7 +446,7 @@ const About = () => {
             onMouseOut={(e) => e.target.style.transform = 'translateY(-20px) scale(1)'}
           />
           <img 
-            src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+            src={Services2}
             alt="Quality control process"
             style={{...aboutStyles.aboutImage, transform: 'translateY(20px)'}}
             onMouseOver={(e) => e.target.style.transform = 'translateY(20px) scale(1.05)'}

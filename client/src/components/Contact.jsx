@@ -165,7 +165,8 @@
 //     </section>
 //   );
 // };
-// export default Contact;
+// export default Contact;import React, { useState } from "react";
+
 
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
@@ -176,8 +177,10 @@ const Contact = () => {
     email: '', 
     phone: '', 
     company: '', 
-    service: '', 
-    message: ''
+    location: '',
+    userType: '',
+    message: '',
+    additionalDetails: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -209,6 +212,12 @@ const Contact = () => {
       title: "Office",
       details: ["WeWork-Vaishnavi Signatures", "Bellandur, Bangalore, 560103"],
       description: "Visit our main office"
+    },
+    {
+      icon: <Clock className="h-6 w-6" />, 
+      title: "Hours",
+      details: ["24/7 Support"],
+      description: "We're here to help"
     }
   ];
 
@@ -271,15 +280,18 @@ const Contact = () => {
       display: 'grid',
       gridTemplateColumns: '1fr 2fr',
       gap: '3rem',
-      marginTop: '4rem'
+      marginTop: '4rem',
+      alignItems: 'stretch'
     },
     contactInfo: {
       background: 'white',
       padding: '3rem',
       borderRadius: '25px',
       boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-      height: 'fit-content',
-      border: '1px solid rgba(108, 92, 231, 0.05)'
+      border: '1px solid rgba(108, 92, 231, 0.05)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
     },
     infoTitle: {
       fontSize: '2rem',
@@ -331,7 +343,9 @@ const Contact = () => {
       padding: '3rem',
       borderRadius: '25px',
       boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-      border: '1px solid rgba(108, 92, 231, 0.05)'
+      border: '1px solid rgba(108, 92, 231, 0.05)',
+      display: 'flex',
+      flexDirection: 'column'
     },
     formTitle: {
       fontSize: '2rem',
@@ -340,7 +354,7 @@ const Contact = () => {
       color: '#2D3436'
     },
     formGroup: {
-      marginBottom: '2rem'
+      marginBottom: '1.5rem'
     },
     formRow: {
       display: 'grid',
@@ -356,13 +370,38 @@ const Contact = () => {
     },
     input: {
       width: '100%',
-      padding: '1rem 1.25rem',
+      padding: '0.75rem 1.25rem',
       border: '2px solid #E8EAED',
       borderRadius: '12px',
       fontSize: '1rem',
       transition: 'all 0.3s ease',
       fontFamily: 'inherit',
-      backgroundColor: '#FAFBFC'
+      backgroundColor: '#FAFBFC',
+      height: '52px',
+      boxSizing: 'border-box'
+    },
+    select: {
+      width: '100%',
+      padding: '0.75rem 1.25rem',
+      border: '2px solid #E8EAED',
+      borderRadius: '12px',
+      fontSize: '1rem',
+      transition: 'all 0.3s ease',
+      fontFamily: 'inherit',
+      backgroundColor: '#FAFBFC',
+      height: '52px',
+      boxSizing: 'border-box',
+      cursor: 'pointer',
+      appearance: 'none',
+      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+      backgroundPosition: 'right 1rem center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '1rem',
+      paddingRight: '3rem',
+      color: '#2D3436',
+      lineHeight: '1.2',
+      display: 'flex',
+      alignItems: 'center'
     },
     textarea: {
       width: '100%',
@@ -373,8 +412,9 @@ const Contact = () => {
       transition: 'all 0.3s ease',
       fontFamily: 'inherit',
       resize: 'vertical',
-      minHeight: '140px',
-      backgroundColor: '#FAFBFC'
+      minHeight: '120px',
+      backgroundColor: '#FAFBFC',
+      boxSizing: 'border-box'
     },
     submitBtn: {
       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
@@ -391,20 +431,17 @@ const Contact = () => {
       alignItems: 'center',
       justifyContent: 'center',
       gap: '0.75rem'
-    },
-    // Responsive styles
-    '@media (max-width: 768px)': {
-      contactGrid: {
-        gridTemplateColumns: '1fr',
-        gap: '2rem'
-      },
-      formRow: {
-        gridTemplateColumns: '1fr'
-      },
-      title: {
-        fontSize: '2.5rem'
-      }
     }
+  };
+
+  const handleFocus = (e) => {
+    e.target.style.borderColor = '#6C5CE7';
+    e.target.style.boxShadow = '0 0 0 3px rgba(108, 92, 231, 0.1)';
+  };
+
+  const handleBlur = (e) => {
+    e.target.style.borderColor = '#E8EAED';
+    e.target.style.boxShadow = 'none';
   };
 
   return (
@@ -428,45 +465,161 @@ const Contact = () => {
 
         <div style={contactStyles.contactGrid}>
           <div style={contactStyles.contactInfo}>
-            <h3 style={contactStyles.infoTitle}>Contact Information</h3>
             <div>
-              {contactInfo.map((info, index) => (
-                <div 
-                  key={index} 
-                  style={contactStyles.contactItem}
-                  onMouseOver={(e) => {
-                    const icon = e.currentTarget.querySelector('.contact-icon');
-                    if (icon) {
-                      icon.style.transform = 'scale(1.1)';
-                      icon.style.background = 'linear-gradient(135deg, #FF6B35, #FD79A8)';
-                    }
-                  }}
-                  onMouseOut={(e) => {
-                    const icon = e.currentTarget.querySelector('.contact-icon');
-                    if (icon) {
-                      icon.style.transform = 'scale(1)';
-                      icon.style.background = 'linear-gradient(135deg, #A29BFE, #6C5CE7)';
-                    }
-                  }}
-                >
-                  <div className="contact-icon" style={contactStyles.contactIcon}>
-                    {info.icon}
+              <h3 style={contactStyles.infoTitle}>Contact Information</h3>
+              <div>
+                {contactInfo.map((info, index) => (
+                  <div 
+                    key={index} 
+                    style={contactStyles.contactItem}
+                    onMouseOver={(e) => {
+                      const icon = e.currentTarget.querySelector('.contact-icon');
+                      if (icon) {
+                        icon.style.transform = 'scale(1.1)';
+                        icon.style.background = 'linear-gradient(135deg, #FF6B35, #FD79A8)';
+                      }
+                    }}
+                    onMouseOut={(e) => {
+                      const icon = e.currentTarget.querySelector('.contact-icon');
+                      if (icon) {
+                        icon.style.transform = 'scale(1)';
+                        icon.style.background = 'linear-gradient(135deg, #A29BFE, #6C5CE7)';
+                      }
+                    }}
+                  >
+                    <div className="contact-icon" style={contactStyles.contactIcon}>
+                      {info.icon}
+                    </div>
+                    <div style={contactStyles.contactDetails}>
+                      <h4 style={contactStyles.contactTitle}>{info.title}</h4>
+                      {info.details.map((detail, idx) => (
+                        <p key={idx} style={contactStyles.contactText}>{detail}</p>
+                      ))}
+                      <p style={contactStyles.contactDescription}>{info.description}</p>
+                    </div>
                   </div>
-                  <div style={contactStyles.contactDetails}>
-                    <h4 style={contactStyles.contactTitle}>{info.title}</h4>
-                    {info.details.map((detail, idx) => (
-                      <p key={idx} style={contactStyles.contactText}>{detail}</p>
-                    ))}
-                    <p style={contactStyles.contactDescription}>{info.description}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            
+            {/* <div style={{
+              marginTop: '2rem',
+              padding: '2rem',
+              background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(255, 107, 53, 0.05))',
+              borderRadius: '15px',
+              border: '1px solid rgba(108, 92, 231, 0.1)'
+            }}>
+              <h4 style={{
+                fontSize: '1.2rem',
+                fontWeight: '700',
+                color: '#2D3436',
+                marginBottom: '1rem'
+              }}>
+                Why Choose Quality.AI?
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.75rem',
+                  color: 'rgba(45, 52, 54, 0.8)',
+                  fontSize: '0.9rem'
+                }}>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold',
+                    flexShrink: 0
+                  }}>✓</div>
+                  Global network of verified inspectors
+                </li>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.75rem',
+                  color: 'rgba(45, 52, 54, 0.8)',
+                  fontSize: '0.9rem'
+                }}>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold',
+                    flexShrink: 0
+                  }}>✓</div>
+                  Competitive pricing & transparency
+                </li>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.75rem',
+                  color: 'rgba(45, 52, 54, 0.8)',
+                  fontSize: '0.9rem'
+                }}>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold',
+                    flexShrink: 0
+                  }}>✓</div>
+                  Real-time reporting & documentation
+                </li>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: 'rgba(45, 52, 54, 0.8)',
+                  fontSize: '0.9rem'
+                }}>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold',
+                    flexShrink: 0
+                  }}>✓</div>
+                  24/7 customer support
+                </li>
+              </ul>
+            </div> */}
           </div>
 
           <div style={contactStyles.contactForm}>
             <h3 style={contactStyles.formTitle}>Send Us a Message</h3>
-            <div onSubmit={handleSubmit}>
+            <div>
               <div style={contactStyles.formRow}>
                 <div style={contactStyles.formGroup}>
                   <label htmlFor="name" style={contactStyles.label}>
@@ -481,14 +634,8 @@ const Contact = () => {
                     required
                     style={contactStyles.input}
                     placeholder="Your full name"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#6C5CE7';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(108, 92, 231, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#E8EAED';
-                      e.target.style.boxShadow = 'none';
-                    }}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <div style={contactStyles.formGroup}>
@@ -504,20 +651,97 @@ const Contact = () => {
                     required
                     style={contactStyles.input}
                     placeholder="your@email.com"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#6C5CE7';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(108, 92, 231, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#E8EAED';
-                      e.target.style.boxShadow = 'none';
-                    }}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
                   />
                 </div>
               </div>
 
-              <div style={contactStyles.formGroup}>
-                <label htmlFor="message" style={contactStyles.label}>Message *</label>
+              <div style={contactStyles.formRow}>
+                <div style={contactStyles.formGroup}>
+                  <label htmlFor="phone" style={contactStyles.label}>
+                    Contact Number *
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    value={formData.phone} 
+                    onChange={handleChange} 
+                    required
+                    style={contactStyles.input}
+                    placeholder="+91 XXXXX XXXXX"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                  />
+                </div>
+                <div style={contactStyles.formGroup}>
+                  <label htmlFor="company" style={contactStyles.label}>
+                    Company Name *
+                  </label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    name="company" 
+                    value={formData.company} 
+                    onChange={handleChange} 
+                    required
+                    style={contactStyles.input}
+                    placeholder="Your company name"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                  />
+                </div>
+              </div>
+
+              <div style={contactStyles.formRow}>
+                <div style={contactStyles.formGroup}>
+                  <label htmlFor="location" style={contactStyles.label}>
+                    Location of Inspection *
+                  </label>
+                  <input 
+                    type="text" 
+                    id="location" 
+                    name="location" 
+                    value={formData.location} 
+                    onChange={handleChange} 
+                    required
+                    style={contactStyles.input}
+                    placeholder="City, Country"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                  />
+                </div>
+                <div style={contactStyles.formGroup}>
+                  <label htmlFor="userType" style={contactStyles.label}>
+                    Are you an Importer or Exporter? *
+                  </label>
+                  <select 
+                    id="userType" 
+                    name="userType" 
+                    value={formData.userType} 
+                    onChange={handleChange} 
+                    required
+                    style={{
+                      ...contactStyles.select,
+                      color: formData.userType ? '#2D3436' : '#9CA3AF'
+                    }}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                  >
+                    <option value="" style={{ color: '#9CA3AF' }}>Select your role</option>
+                    <option value="importer" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Importer</option>
+                    <option value="exporter" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Exporter</option>
+                    <option value="both" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Both</option>
+                    <option value="other" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* <div style={contactStyles.formGroup}>
+                <label htmlFor="message" style={contactStyles.label}>
+                  Message *
+                </label>
                 <textarea 
                   id="message" 
                   name="message" 
@@ -526,20 +750,31 @@ const Contact = () => {
                   required 
                   style={contactStyles.textarea}
                   placeholder="Tell us about your quality inspection needs and requirements..."
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#6C5CE7';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(108, 92, 231, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#E8EAED';
-                    e.target.style.boxShadow = 'none';
-                  }}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                />
+              </div> */}
+
+              <div style={contactStyles.formGroup}>
+                <label htmlFor="additionalDetails" style={contactStyles.label}>
+                  Additional Details
+                </label>
+                <textarea 
+                  id="additionalDetails" 
+                  name="additionalDetails" 
+                  value={formData.additionalDetails} 
+                  onChange={handleChange} 
+                  style={contactStyles.textarea}
+                  placeholder="Any additional information about your cargo, specific requirements, timeline, or other details..."
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                 />
               </div>
 
               <button 
                 type="submit" 
                 disabled={isSubmitted}
+                onClick={handleSubmit}
                 style={{
                   ...contactStyles.submitBtn,
                   opacity: isSubmitted ? 0.8 : 1,
