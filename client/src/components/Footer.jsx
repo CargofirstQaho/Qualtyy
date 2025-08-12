@@ -113,112 +113,415 @@
 // export default Footer;
 
 
+// import React from 'react';
+// import { Mail, Phone, MapPin } from 'lucide-react';
+
+// const Footer = () => {
+//   const footerSections = [
+//     {
+//       title: "Services",
+//       links: [
+//         "Pre-Production Inspection",
+//         "During Production Inspection", 
+//         "Pre-Shipment Inspection",
+//         "Container Loading Inspection"
+//       ]
+//     },
+//     {
+//       title: "Company",
+//       links: [
+//         "About Us",
+//         "Our Team",
+//         "Careers",
+//         "Contact"
+//       ]
+//     },
+//     {
+//       title: "Resources",
+//       links: [
+//         "Documentation",
+//         "Help Center",
+//         "Privacy Policy",
+//         "Terms of Service"
+//       ]
+//     }
+//   ];
+
+//   const footerStyles = {
+//     footer: {
+//       background: '#1A1A1A',
+//       color: '#FFFFFF',
+//       padding: '4rem 2rem 2rem'
+//     },
+//     footerContent: {
+//       maxWidth: '1400px',
+//       margin: '0 auto'
+//     },
+//     footerGrid: {
+//       display: 'grid',
+//       gridTemplateColumns: '2fr 1fr 1fr 1fr',
+//       gap: '3rem',
+//       marginBottom: '3rem'
+//     },
+//     footerBrand: {
+//       maxWidth: '400px'
+//     },
+//     brandLogo: {
+//       display: 'flex',
+//       alignItems: 'center',
+//       gap: '0.75rem',
+//       marginBottom: '2rem'
+//     },
+//     logoIcon: {
+//       width: '40px',
+//       height: '40px',
+//       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+//       borderRadius: '10px',
+//       display: 'flex',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       color: 'white',
+//       fontSize: '1.2rem',
+//       fontWeight: 'bold'
+//     },
+//     logoText: {
+//       fontSize: '1.5rem',
+//       fontWeight: '700',
+//       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+//       WebkitBackgroundClip: 'text',
+//       WebkitTextFillColor: 'transparent',
+//       backgroundClip: 'text'
+//     },
+//     brandDescription: {
+//       color: 'rgba(255, 255, 255, 0.7)',
+//       marginBottom: '2rem',
+//       lineHeight: '1.6',
+//       fontSize: '1rem'
+//     },
+//     contactItem: {
+//       display: 'flex',
+//       alignItems: 'center',
+//       gap: '0.75rem',
+//       marginBottom: '1rem',
+//       color: 'rgba(255, 255, 255, 0.7)',
+//       fontSize: '0.95rem',
+//       transition: 'all 0.3s ease'
+//     },
+//     contactIcon: {
+//       color: '#FF6B35',
+//       flexShrink: 0
+//     },
+//     footerSection: {
+      
+//     },
+//     sectionTitle: {
+//       fontWeight: '600',
+//       marginBottom: '1.5rem',
+//       color: '#FFFFFF',
+//       fontSize: '1.1rem'
+//     },
+//     sectionList: {
+//       listStyle: 'none',
+//       padding: 0,
+//       margin: 0
+//     },
+//     sectionListItem: {
+//       marginBottom: '0.75rem'
+//     },
+//     sectionLink: {
+//       color: 'rgba(255, 255, 255, 0.7)',
+//       textDecoration: 'none',
+//       transition: 'all 0.3s ease',
+//       fontSize: '0.95rem',
+//       position: 'relative'
+//     },
+//     footerBottom: {
+//       borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+//       paddingTop: '2rem',
+//       display: 'flex',
+//       justifyContent: 'space-between',
+//       alignItems: 'center',
+//       flexWrap: 'wrap',
+//       gap: '1rem'
+//     },
+//     copyright: {
+//       color: 'rgba(255, 255, 255, 0.5)',
+//       fontSize: '0.9rem'
+//     },
+//     footerLinks: {
+//       display: 'flex',
+//       gap: '2rem',
+//       flexWrap: 'wrap'
+//     },
+//     footerLink: {
+//       color: 'rgba(255, 255, 255, 0.5)',
+//       textDecoration: 'none',
+//       transition: 'color 0.3s ease',
+//       fontSize: '0.9rem'
+//     },
+//     // Responsive styles
+//     '@media (max-width: 768px)': {
+//       footerGrid: {
+//         gridTemplateColumns: '1fr',
+//         gap: '2rem'
+//       },
+//       footerBottom: {
+//         flexDirection: 'column',
+//         textAlign: 'center',
+//         gap: '1rem'
+//       },
+//       footerLinks: {
+//         justifyContent: 'center'
+//       }
+//     }
+//   };
+
+//   return (
+//     <footer style={footerStyles.footer}>
+//       <div style={footerStyles.footerContent}>
+//         <div style={footerStyles.footerGrid}>
+//           <div style={footerStyles.footerBrand}>
+//             <div style={footerStyles.brandLogo}>
+//               <div style={footerStyles.logoIcon}>Q</div>
+//               <span style={footerStyles.logoText}>Quality.AI</span>
+//             </div>
+//             <p style={footerStyles.brandDescription}>
+//               The leading global marketplace for quality inspections, connecting traders with certified inspection professionals worldwide.
+//             </p>
+            
+//             <div>
+//               <div 
+//                 style={footerStyles.contactItem}
+//                 onMouseOver={(e) => {
+//                   e.currentTarget.style.color = '#FF6B35';
+//                   e.currentTarget.style.transform = 'translateX(5px)';
+//                 }}
+//                 onMouseOut={(e) => {
+//                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+//                   e.currentTarget.style.transform = 'translateX(0)';
+//                 }}
+//               >
+//                 <Phone size={16} style={footerStyles.contactIcon} />
+//                 <span>+91 903 546 2042</span>
+//               </div>
+//               <div 
+//                 style={footerStyles.contactItem}
+//                 onMouseOver={(e) => {
+//                   e.currentTarget.style.color = '#FF6B35';
+//                   e.currentTarget.style.transform = 'translateX(5px)';
+//                 }}
+//                 onMouseOut={(e) => {
+//                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+//                   e.currentTarget.style.transform = 'translateX(0)';
+//                 }}
+//               >
+//                 <Mail size={16} style={footerStyles.contactIcon} />
+//                 <span>support@quality.ai</span>
+//               </div>
+//               <div 
+//                 style={footerStyles.contactItem}
+//                 onMouseOver={(e) => {
+//                   e.currentTarget.style.color = '#FF6B35';
+//                   e.currentTarget.style.transform = 'translateX(5px)';
+//                 }}
+//                 onMouseOut={(e) => {
+//                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+//                   e.currentTarget.style.transform = 'translateX(0)';
+//                 }}
+//               >
+//                 <MapPin size={16} style={footerStyles.contactIcon} />
+//                 <span>
+//                   WeWork-Vaishnavi Signatures<br />
+//                   Bellandur, Bangalore, 560103
+//                 </span>
+//               </div>
+//             </div>
+//           </div>
+
+//           {footerSections.map((section, index) => (
+//             <div key={index} style={footerStyles.footerSection}>
+//               <h4 style={footerStyles.sectionTitle}>{section.title}</h4>
+//               <ul style={footerStyles.sectionList}>
+//                 {section.links.map((link, linkIndex) => (
+//                   <li key={linkIndex} style={footerStyles.sectionListItem}>
+//                     <a 
+//                       href="#" 
+//                       style={footerStyles.sectionLink}
+//                       onMouseOver={(e) => {
+//                         e.target.style.color = '#FF6B35';
+//                         e.target.style.transform = 'translateX(5px)';
+//                       }}
+//                       onMouseOut={(e) => {
+//                         e.target.style.color = 'rgba(255, 255, 255, 0.7)';
+//                         e.target.style.transform = 'translateX(0)';
+//                       }}
+//                     >
+//                       {link}
+//                     </a>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div style={footerStyles.footerBottom}>
+//           <p style={footerStyles.copyright}>
+//             © 2024 Quality.AI. All rights reserved.
+//           </p>
+//           <div style={footerStyles.footerLinks}>
+//             <a 
+//               href="#" 
+//               style={footerStyles.footerLink}
+//               onMouseOver={(e) => e.target.style.color = '#FF6B35'}
+//               onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
+//             >
+//               Privacy Policy
+//             </a>
+//             <a 
+//               href="#" 
+//               style={footerStyles.footerLink}
+//               onMouseOver={(e) => e.target.style.color = '#FF6B35'}
+//               onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
+//             >
+//               Terms of Service
+//             </a>
+//             <a 
+//               href="#" 
+//               style={footerStyles.footerLink}
+//               onMouseOver={(e) => e.target.style.color = '#FF6B35'}
+//               onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
+//             >
+//               Cookie Policy
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
+import QualtyAILogo from '../assets/QualtyAILogo.png'; // Assuming you have a logo image
 
 const Footer = () => {
   const footerSections = [
     {
-      title: "Services",
+      title: "Company",
       links: [
         "Pre-Production Inspection",
         "During Production Inspection", 
         "Pre-Shipment Inspection",
-        "Container Loading Inspection"
+        "Container Loading Inspection",
+        "Factory Audit",
+        "Supplier Verification"
       ]
     },
     {
-      title: "Company",
+      title: "For customers",
       links: [
-        "About Us",
-        "Our Team",
-        "Careers",
-        "Contact"
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        "Documentation",
+        "Quality Reviews",
+        "Inspectors near you",
+        "Contact us",
         "Help Center",
-        "Privacy Policy",
-        "Terms of Service"
+        "Request Quote"
+      ]
+    },
+    {
+      title: "For professionals",
+      links: [
+        "Register as a professional",
+        "Inspector Portal",
+        "Certification Program",
+        "Training Resources"
+      ]
+    },
+    {
+      title: "Social links",
+      links: [
+        "Twitter",
+        "Facebook", 
+        "Instagram",
+        "LinkedIn"
       ]
     }
   ];
 
   const footerStyles = {
     footer: {
-      background: '#1A1A1A',
+      background: '#000000',
+      borderTop: '1px solid rgba(40, 40, 40, 0.3)',
       color: '#FFFFFF',
-      padding: '4rem 2rem 2rem'
+      padding: '80px 0 60px 0',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     footerContent: {
-      maxWidth: '1400px',
-      margin: '0 auto'
+      maxWidth: '1400px', // Match hero section container width
+      margin: '0 auto',
+      padding: '0 2rem' // Match hero section padding exactly
     },
-    footerGrid: {
-      display: 'grid',
-      gridTemplateColumns: '2fr 1fr 1fr 1fr',
-      gap: '3rem',
-      marginBottom: '3rem'
-    },
-    footerBrand: {
-      maxWidth: '400px'
+    brandSection: {
+      marginBottom: '60px',
+      textAlign: 'left' // Changed from center to left to align with hero content
     },
     brandLogo: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.75rem',
-      marginBottom: '2rem'
+      display: 'inline-flex',
+      alignItems: 'center', // This centers items vertically
+      gap: '12px',
+      marginBottom: '0'
     },
     logoIcon: {
-      width: '40px',
-      height: '40px',
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-      borderRadius: '10px',
+      width: '80px',
+      height: '80px',
+      borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'white',
-      fontSize: '1.2rem',
-      fontWeight: 'bold'
+      flexShrink: 0,
+      // Remove the text-related styles since we're using an image
+      overflow: 'hidden', // Ensure the image fits properly within the container
+      transform: 'translateY(-4px)' // Move logo up slightly to align with text baseline
+    },
+    logoImage: {
+      width: '100%',
+      height: '100%',
+      borderRadius: '8px',
+      objectFit: 'cover', // Ensure the image scales properly
+      display: 'block' // Remove any inline spacing
     },
     logoText: {
       fontSize: '1.5rem',
-      fontWeight: '700',
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+      fontWeight: '800',
+      background: 'linear-gradient(135deg, #FFFFFF, #CCCCCC)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text'
+      backgroundClip: 'text',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.02em',
+      lineHeight: '1.2', // Slightly increased for better alignment
+      margin: '0',
+      padding: '0',
+      // Remove display: flex and alignItems from here since parent handles alignment
     },
-    brandDescription: {
-      color: 'rgba(255, 255, 255, 0.7)',
-      marginBottom: '2rem',
-      lineHeight: '1.6',
-      fontSize: '1rem'
-    },
-    contactItem: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.75rem',
-      marginBottom: '1rem',
-      color: 'rgba(255, 255, 255, 0.7)',
-      fontSize: '0.95rem',
-      transition: 'all 0.3s ease'
-    },
-    contactIcon: {
-      color: '#FF6B35',
-      flexShrink: 0
+    footerGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: '80px',
+      marginBottom: '80px'
     },
     footerSection: {
       
     },
     sectionTitle: {
-      fontWeight: '600',
-      marginBottom: '1.5rem',
+      fontWeight: '700',
+      marginBottom: '32px',
       color: '#FFFFFF',
-      fontSize: '1.1rem'
+      fontSize: '1.3rem',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     sectionList: {
       listStyle: 'none',
@@ -226,118 +529,96 @@ const Footer = () => {
       margin: 0
     },
     sectionListItem: {
-      marginBottom: '0.75rem'
+      marginBottom: '16px'
     },
     sectionLink: {
       color: 'rgba(255, 255, 255, 0.7)',
       textDecoration: 'none',
       transition: 'all 0.3s ease',
-      fontSize: '0.95rem',
-      position: 'relative'
+      fontSize: '1.1rem',
+      position: 'relative',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      lineHeight: '1.5'
     },
     footerBottom: {
-      borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-      paddingTop: '2rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: '1rem'
+      borderTop: '1px solid rgba(40, 40, 40, 0.3)',
+      paddingTop: '40px',
+      textAlign: 'left' // Changed from center to left to align with hero content
+    },
+    footerBottomText: {
+      color: 'rgba(255, 255, 255, 0.5)',
+      fontSize: '0.9rem',
+      fontWeight: '400',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      lineHeight: '1.6',
+      marginBottom: '8px'
     },
     copyright: {
       color: 'rgba(255, 255, 255, 0.5)',
-      fontSize: '0.9rem'
-    },
-    footerLinks: {
-      display: 'flex',
-      gap: '2rem',
-      flexWrap: 'wrap'
-    },
-    footerLink: {
-      color: 'rgba(255, 255, 255, 0.5)',
-      textDecoration: 'none',
-      transition: 'color 0.3s ease',
-      fontSize: '0.9rem'
+      fontSize: '0.9rem',
+      fontWeight: '400',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      lineHeight: '1.6'
     },
     // Responsive styles
     '@media (max-width: 768px)': {
       footerGrid: {
         gridTemplateColumns: '1fr',
-        gap: '2rem'
+        gap: '40px'
       },
-      footerBottom: {
-        flexDirection: 'column',
-        textAlign: 'center',
-        gap: '1rem'
-      },
-      footerLinks: {
-        justifyContent: 'center'
+      brandSection: {
+        marginBottom: '40px'
       }
     }
   };
 
+  // Add Google Fonts import and responsive styles
+  React.useEffect(() => {
+    if (!document.querySelector('#footer-styles')) {
+      const style = document.createElement('style');
+      style.id = 'footer-styles';
+      style.textContent = `
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .footer-brand-section {
+            margin-bottom: 40px !important;
+            text-align: center !important;
+          }
+          .footer-bottom {
+            text-align: center !important;
+          }
+          .footer-content {
+            padding: 0 1rem !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }, []);
+
   return (
     <footer style={footerStyles.footer}>
-      <div style={footerStyles.footerContent}>
-        <div style={footerStyles.footerGrid}>
-          <div style={footerStyles.footerBrand}>
-            <div style={footerStyles.brandLogo}>
-              <div style={footerStyles.logoIcon}>Q</div>
-              <span style={footerStyles.logoText}>Quality.AI</span>
+      <div style={footerStyles.footerContent} className="footer-content">
+        <div style={footerStyles.brandSection} className="footer-brand-section">
+          <div style={footerStyles.brandLogo}>
+            <div style={footerStyles.logoIcon}>
+              <img 
+                src={QualtyAILogo} 
+                alt="Qualty.AI Logo" 
+                style={footerStyles.logoImage}
+              />
             </div>
-            <p style={footerStyles.brandDescription}>
-              The leading global marketplace for quality inspections, connecting traders with certified inspection professionals worldwide.
-            </p>
-            
-            <div>
-              <div 
-                style={footerStyles.contactItem}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.color = '#FF6B35';
-                  e.currentTarget.style.transform = 'translateX(5px)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
-                  e.currentTarget.style.transform = 'translateX(0)';
-                }}
-              >
-                <Phone size={16} style={footerStyles.contactIcon} />
-                <span>+91 903 546 2042</span>
-              </div>
-              <div 
-                style={footerStyles.contactItem}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.color = '#FF6B35';
-                  e.currentTarget.style.transform = 'translateX(5px)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
-                  e.currentTarget.style.transform = 'translateX(0)';
-                }}
-              >
-                <Mail size={16} style={footerStyles.contactIcon} />
-                <span>support@quality.ai</span>
-              </div>
-              <div 
-                style={footerStyles.contactItem}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.color = '#FF6B35';
-                  e.currentTarget.style.transform = 'translateX(5px)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
-                  e.currentTarget.style.transform = 'translateX(0)';
-                }}
-              >
-                <MapPin size={16} style={footerStyles.contactIcon} />
-                <span>
-                  WeWork-Vaishnavi Signatures<br />
-                  Bellandur, Bangalore, 560103
-                </span>
-              </div>
-            </div>
+            <span style={footerStyles.logoText}>Qualty.AI</span>
           </div>
+        </div>
 
+        <div style={footerStyles.footerGrid} className="footer-grid">
           {footerSections.map((section, index) => (
             <div key={index} style={footerStyles.footerSection}>
               <h4 style={footerStyles.sectionTitle}>{section.title}</h4>
@@ -348,7 +629,7 @@ const Footer = () => {
                       href="#" 
                       style={footerStyles.sectionLink}
                       onMouseOver={(e) => {
-                        e.target.style.color = '#FF6B35';
+                        e.target.style.color = '#CCCCCC';
                         e.target.style.transform = 'translateX(5px)';
                       }}
                       onMouseOut={(e) => {
@@ -365,36 +646,13 @@ const Footer = () => {
           ))}
         </div>
 
-        <div style={footerStyles.footerBottom}>
-          <p style={footerStyles.copyright}>
-            © 2024 Quality.AI. All rights reserved.
+        <div style={footerStyles.footerBottom} className="footer-bottom">
+          <p style={footerStyles.footerBottomText}>
+            * As on December 31, 2024
           </p>
-          <div style={footerStyles.footerLinks}>
-            <a 
-              href="#" 
-              style={footerStyles.footerLink}
-              onMouseOver={(e) => e.target.style.color = '#FF6B35'}
-              onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
-            >
-              Privacy Policy
-            </a>
-            <a 
-              href="#" 
-              style={footerStyles.footerLink}
-              onMouseOver={(e) => e.target.style.color = '#FF6B35'}
-              onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
-            >
-              Terms of Service
-            </a>
-            <a 
-              href="#" 
-              style={footerStyles.footerLink}
-              onMouseOver={(e) => e.target.style.color = '#FF6B35'}
-              onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
-            >
-              Cookie Policy
-            </a>
-          </div>
+          <p style={footerStyles.copyright}>
+            © Copyright 2025 Quality.AI Ltd. (formerly known as QualityClap Technologies India Limited and QualityClap Technologies India India Limited) All rights reserved. | CIN: U74140DL2014PTC274413
+          </p>
         </div>
       </div>
     </footer>

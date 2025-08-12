@@ -140,12 +140,401 @@
 // };
 // export default About;
 
-import React from 'react';
+
+
+// import React from 'react';
+// import { Award, Users, Target, TrendingUp, ArrowRight } from 'lucide-react';
+// import Services1 from '../assets/services1.png';
+// import Services2 from '../assets/services2.png';
+
+// const About = () => {
+//   const achievements = [
+//     {
+//       icon: <Award size={40} />,
+//       number: "250+",
+//       label: "Global Inspectors"
+//     },
+//     {
+//       icon: <Users size={40} />,
+//       number: "30+",
+//       label: "Countries Covered"
+//     },
+//     {
+//       icon: <Target size={40} />,
+//       number: "+69%",
+//       label: "Productivity & Cost Saving"
+//     },
+//     {
+//       icon: <TrendingUp size={40} />,
+//       number: "24/7",
+//       label: "Platform Support"
+//     }
+//   ];
+
+//   const values = [
+//     {
+//       title: "Raise Inspection Query",
+//       description: "Create your inspection requirements with budget and timeline specifications on our platform."
+//     },
+//     {
+//       title: "Choose the Best Quote",
+//       description: "Compare multiple quotes from verified global inspectors and select the best fit for your needs."
+//     },
+//     {
+//       title: "Better Transparency",
+//       description: "Track inspection progress with live updates and comprehensive reporting for complete visibility."
+//     },
+//     {
+//       title: "Global Inspector Network",
+//       description: "Access our vast network of certified inspectors across 50+ countries for worldwide coverage."
+//     }
+//   ];
+
+//   const aboutStyles = {
+//     about: {
+//       padding: '6rem 2rem',
+//       background: '#1A1A1A',
+//       position: 'relative',
+//       overflow: 'hidden'
+//     },
+//     backgroundEffect: {
+//       position: 'absolute',
+//       top: '20%',
+//       right: '-20%',
+//       width: '40%',
+//       height: '60%',
+//       background: 'radial-gradient(circle, rgba(162, 155, 254, 0.1) 0%, transparent 70%)',
+//       animation: 'pulse 15s ease-in-out infinite'
+//     },
+//     container: {
+//       maxWidth: '1400px',
+//       margin: '0 auto',
+//       display: 'grid',
+//       gridTemplateColumns: '1fr 1fr',
+//       gap: '4rem',
+//       alignItems: 'center',
+//       position: 'relative',
+//       zIndex: 10
+//     },
+//     aboutText: {
+//       color: '#FFFFFF'
+//     },
+//     badge: {
+//       display: 'inline-flex',
+//       alignItems: 'center',
+//       background: 'rgba(255, 107, 53, 0.1)',
+//       color: '#FF6B35',
+//       padding: '0.75rem 1.5rem',
+//       borderRadius: '25px',
+//       fontWeight: '600',
+//       fontSize: '0.9rem',
+//       marginBottom: '2rem',
+//       border: '1px solid rgba(255, 107, 53, 0.2)',
+//       backdropFilter: 'blur(10px)'
+//     },
+//     title: {
+//       fontSize: '4rem',
+//       fontWeight: '900',
+//       lineHeight: '1.2',
+//       marginBottom: '2rem',
+//       color: '#FFFFFF'
+//     },
+//     highlight: {
+//       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+//       WebkitBackgroundClip: 'text',
+//       WebkitTextFillColor: 'transparent',
+//       backgroundClip: 'text'
+//     },
+//     description: {
+//       color: 'rgba(255, 255, 255, 0.8)',
+//       marginBottom: '1.5rem',
+//       fontSize: '1.1rem',
+//       lineHeight: '1.6'
+//     },
+//     achievementsGrid: {
+//       display: 'grid',
+//       gridTemplateColumns: 'repeat(2, 1fr)',
+//       gap: '2rem',
+//       margin: '3rem 0'
+//     },
+//     achievement: {
+//       textAlign: 'center',
+//       padding: '1.5rem',
+//       background: 'rgba(255, 255, 255, 0.05)',
+//       borderRadius: '15px',
+//       backdropFilter: 'blur(10px)',
+//       border: '1px solid rgba(255, 255, 255, 0.1)',
+//       transition: 'all 0.3s ease'
+//     },
+//     achievementIcon: {
+//       color: '#FF6B35',
+//       marginBottom: '1rem',
+//       display: 'flex',
+//       justifyContent: 'center'
+//     },
+//     achievementNumber: {
+//       fontSize: '2.5rem',
+//       fontWeight: '900',
+//       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+//       WebkitBackgroundClip: 'text',
+//       WebkitTextFillColor: 'transparent',
+//       backgroundClip: 'text',
+//       marginBottom: '0.5rem'
+//     },
+//     achievementLabel: {
+//       color: 'rgba(255, 255, 255, 0.7)',
+//       fontWeight: '500'
+//     },
+//     ctaButton: {
+//       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+//       color: 'white',
+//       padding: '1rem 2rem',
+//       borderRadius: '30px',
+//       textDecoration: 'none',
+//       fontWeight: '600',
+//       display: 'inline-flex',
+//       alignItems: 'center',
+//       gap: '0.5rem',
+//       transition: 'all 0.3s ease',
+//       border: 'none',
+//       cursor: 'pointer',
+//       fontSize: '1rem'
+//     },
+//     aboutVisual: {
+//       display: 'grid',
+//       gridTemplateColumns: 'repeat(2, 1fr)',
+//       gap: '1rem',
+//       position: 'relative'
+//     },
+//     visualGlow: {
+//       position: 'absolute',
+//       inset: 0,
+//       background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.3), rgba(255, 107, 53, 0.3))',
+//       borderRadius: '25px',
+//       filter: 'blur(40px)',
+//       zIndex: -1
+//     },
+//     aboutImage: {
+//       width: '100%',
+//       height: '200px',
+//       objectFit: 'cover',
+//       borderRadius: '15px',
+//       transition: 'all 0.3s ease',
+//       border: '1px solid rgba(255, 255, 255, 0.1)'
+//     },
+//     valuesSection: {
+//       marginTop: '4rem',
+//       gridColumn: '1 / -1'
+//     },
+//     valuesHeader: {
+//       textAlign: 'center',
+//       marginBottom: '3rem'
+//     },
+//     valuesTitle: {
+//       fontSize: '2.5rem',
+//       fontWeight: '700',
+//       color: '#FFFFFF',
+//       marginBottom: '1.5rem'
+//     },
+//     valuesDescription: {
+//       fontSize: '1.2rem',
+//       color: 'rgba(255, 255, 255, 0.8)',
+//       maxWidth: '600px',
+//       margin: '0 auto',
+//       lineHeight: '1.6'
+//     },
+//     valuesGrid: {
+//       display: 'grid',
+//       gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+//       gap: '2rem'
+//     },
+//     valueCard: {
+//       background: 'rgba(255, 255, 255, 0.05)',
+//       backdropFilter: 'blur(10px)',
+//       padding: '2rem',
+//       borderRadius: '20px',
+//       border: '1px solid rgba(255, 255, 255, 0.1)',
+//       transition: 'all 0.3s ease',
+//       cursor: 'pointer'
+//     },
+//     valueTitle: {
+//       fontSize: '1.25rem',
+//       fontWeight: '700',
+//       color: '#FFFFFF',
+//       marginBottom: '1rem'
+//     },
+//     valueDescription: {
+//       color: 'rgba(255, 255, 255, 0.7)',
+//       lineHeight: '1.6'
+//     }
+//   };
+
+//   // Add keyframes for animations
+//   React.useEffect(() => {
+//     if (!document.querySelector('#about-animations')) {
+//       const keyframes = `
+//         @keyframes pulse {
+//           0%, 100% { transform: scale(1) rotate(0deg); }
+//           50% { transform: scale(1.1) rotate(180deg); }
+//         }
+//       `;
+//       const style = document.createElement('style');
+//       style.id = 'about-animations';
+//       style.textContent = keyframes;
+//       document.head.appendChild(style);
+//     }
+//   }, []);
+
+//   return (
+//     <section style={aboutStyles.about} id="about">
+//       <div style={aboutStyles.backgroundEffect}></div>
+      
+//       <div style={aboutStyles.container}>
+//         <div style={aboutStyles.aboutText}>
+//           <div style={aboutStyles.badge}>
+//             About Qualty.AI
+//           </div>
+//           <h2 style={aboutStyles.title}>
+//             Revolutionizing Global
+//             <span style={aboutStyles.highlight}> Quality Inspections</span>
+//           </h2>
+//           <p style={aboutStyles.description}>
+//             Quality.AI is a revolutionary B2B marketplace connecting global traders with certified inspection firms. 
+//             We eliminate the hassle of traditional communication methods by providing a centralized platform where 
+//             you can create inspection demands and receive multiple competitive quotes.
+//           </p>
+//           <p style={aboutStyles.description}>
+//             Our platform maps the entire inspection process, providing status updates and live tracking for complete 
+//             transparency. Add stakeholders to make quality decisions with instant updates and comprehensive reporting. 
+//             Quality Inspections simplified.
+//           </p>
+//           <button 
+//             style={aboutStyles.ctaButton}
+//             onMouseOver={(e) => {
+//               e.target.style.transform = 'translateY(-3px)';
+//               e.target.style.boxShadow = '0 15px 35px rgba(255, 107, 53, 0.4)';
+//             }}
+//             onMouseOut={(e) => {
+//               e.target.style.transform = 'translateY(0)';
+//               e.target.style.boxShadow = 'none';
+//             }}
+//           >
+//             Learn Our Story
+//             <ArrowRight size={20} />
+//           </button>
+//         </div>
+        
+//         <div style={aboutStyles.aboutVisual}>
+//           <div style={aboutStyles.visualGlow}></div>
+//           <img 
+//             src={Services1} 
+//             alt="Quality inspection technology"
+//             style={{...aboutStyles.aboutImage, transform: 'translateY(-20px)'}}
+//             onMouseOver={(e) => e.target.style.transform = 'translateY(-20px) scale(1.05)'}
+//             onMouseOut={(e) => e.target.style.transform = 'translateY(-20px) scale(1)'}
+//           />
+//           <img 
+//             src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+//             alt="Global trade network"
+//             style={{...aboutStyles.aboutImage, transform: 'translateY(20px)'}}
+//             onMouseOver={(e) => e.target.style.transform = 'translateY(20px) scale(1.05)'}
+//             onMouseOut={(e) => e.target.style.transform = 'translateY(20px) scale(1)'}
+//           />
+//           <img 
+//             src="https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+//             alt="Digital platform"
+//             style={{...aboutStyles.aboutImage, transform: 'translateY(-20px)'}}
+//             onMouseOver={(e) => e.target.style.transform = 'translateY(-20px) scale(1.05)'}
+//             onMouseOut={(e) => e.target.style.transform = 'translateY(-20px) scale(1)'}
+//           />
+//           <img 
+//             src={Services2}
+//             alt="Quality control process"
+//             style={{...aboutStyles.aboutImage, transform: 'translateY(20px)'}}
+//             onMouseOver={(e) => e.target.style.transform = 'translateY(20px) scale(1.05)'}
+//             onMouseOut={(e) => e.target.style.transform = 'translateY(20px) scale(1)'}
+//           />
+//         </div>
+
+//         <div style={aboutStyles.valuesSection}>
+//           <div style={aboutStyles.valuesHeader}>
+//             <h3 style={aboutStyles.valuesTitle}>What You Get With Qualty.AI</h3>
+//             <p style={aboutStyles.valuesDescription}>
+//               Our platform provides comprehensive solutions for all your quality inspection needs with AI-based insights 
+//               and market analytics for better trade decisions.
+//             </p>
+//           </div>
+          
+//           <div style={aboutStyles.valuesGrid}>
+//             {values.map((value, index) => (
+//               <div 
+//                 key={index} 
+//                 style={aboutStyles.valueCard}
+//                 onMouseOver={(e) => {
+//                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+//                   e.currentTarget.style.border = '1px solid rgba(255, 107, 53, 0.3)';
+//                   e.currentTarget.style.transform = 'translateY(-5px)';
+//                   const title = e.currentTarget.querySelector('.value-title');
+//                   if (title) title.style.color = '#FF6B35';
+//                 }}
+//                 onMouseOut={(e) => {
+//                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+//                   e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+//                   e.currentTarget.style.transform = 'translateY(0)';
+//                   const title = e.currentTarget.querySelector('.value-title');
+//                   if (title) title.style.color = '#FFFFFF';
+//                 }}
+//               >
+//                 <h4 className="value-title" style={aboutStyles.valueTitle}>{value.title}</h4>
+//                 <p style={aboutStyles.valueDescription}>{value.description}</p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div style={{gridColumn: '1 / -1', textAlign: 'center', marginTop: '4rem'}}>
+//           <div style={aboutStyles.achievementsGrid}>
+//             {achievements.map((achievement, index) => (
+//               <div 
+//                 key={index} 
+//                 style={aboutStyles.achievement}
+//                 onMouseOver={(e) => {
+//                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+//                   e.currentTarget.style.transform = 'translateY(-5px)';
+//                 }}
+//                 onMouseOut={(e) => {
+//                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+//                   e.currentTarget.style.transform = 'translateY(0)';
+//                 }}
+//               >
+//                 <div style={aboutStyles.achievementIcon}>
+//                   {achievement.icon}
+//                 </div>
+//                 <div style={aboutStyles.achievementNumber}>{achievement.number}</div>
+//                 <div style={aboutStyles.achievementLabel}>{achievement.label}</div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default About;
+
+import React,{useState} from 'react';
 import { Award, Users, Target, TrendingUp, ArrowRight } from 'lucide-react';
 import Services1 from '../assets/services1.png';
 import Services2 from '../assets/services2.png';
+import services3 from '../assets/services3.jpeg';
+import services4 from '../assets/services4.webp';
+import Scene1 from '../assets/Scene1.mp4';
+import Scene2 from '../assets/Scene2.mp4';
 
 const About = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
   const achievements = [
     {
       icon: <Award size={40} />,
@@ -191,9 +580,10 @@ const About = () => {
   const aboutStyles = {
     about: {
       padding: '6rem 2rem',
-      background: '#1A1A1A',
+      background: '#000000',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     backgroundEffect: {
       position: 'absolute',
@@ -220,25 +610,27 @@ const About = () => {
     badge: {
       display: 'inline-flex',
       alignItems: 'center',
-      background: 'rgba(255, 107, 53, 0.1)',
-      color: '#FF6B35',
-      padding: '0.75rem 1.5rem',
+      background: 'gray',
+      color: 'white',
+      padding: '1rem 2rem',
       borderRadius: '25px',
-      fontWeight: '600',
-      fontSize: '0.9rem',
+      fontWeight: '700',
+      fontSize: '1.2rem',
       marginBottom: '2rem',
-      border: '1px solid rgba(255, 107, 53, 0.2)',
-      backdropFilter: 'blur(10px)'
+      backdropFilter: 'blur(10px)',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: '4rem',
+      fontSize: '5rem',
       fontWeight: '900',
-      lineHeight: '1.2',
+      lineHeight: '1.1',
       marginBottom: '2rem',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.03em'
     },
     highlight: {
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+      background: 'gray',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text'
@@ -246,8 +638,10 @@ const About = () => {
     description: {
       color: 'rgba(255, 255, 255, 0.8)',
       marginBottom: '1.5rem',
-      fontSize: '1.1rem',
-      lineHeight: '1.6'
+      fontSize: '1.4rem',
+      lineHeight: '1.6',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     achievementsGrid: {
       display: 'grid',
@@ -265,60 +659,129 @@ const About = () => {
       transition: 'all 0.3s ease'
     },
     achievementIcon: {
-      color: '#FF6B35',
+      color: 'white',
       marginBottom: '1rem',
       display: 'flex',
       justifyContent: 'center'
     },
     achievementNumber: {
-      fontSize: '2.5rem',
+      fontSize: '3rem',
       fontWeight: '900',
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+      background: 'white',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      marginBottom: '0.5rem'
+      marginBottom: '0.5rem',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     achievementLabel: {
       color: 'rgba(255, 255, 255, 0.7)',
-      fontWeight: '500'
+      fontWeight: '600',
+      fontSize: '1.1rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     ctaButton: {
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
+      background: 'gray',
       color: 'white',
-      padding: '1rem 2rem',
+      padding: '1.3rem 2.8rem',
       borderRadius: '30px',
       textDecoration: 'none',
-      fontWeight: '600',
+      fontWeight: '700',
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.5rem',
       transition: 'all 0.3s ease',
       border: 'none',
       cursor: 'pointer',
-      fontSize: '1rem'
+      fontSize: '1.2rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      marginBottom: '2rem'
     },
     aboutVisual: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '1rem',
-      position: 'relative'
+      position: 'relative',
+      borderRadius: '25px',
+      overflow: 'hidden',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)'
     },
     visualGlow: {
       position: 'absolute',
       inset: 0,
-      background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.3), rgba(255, 107, 53, 0.3))',
       borderRadius: '25px',
       filter: 'blur(40px)',
       zIndex: -1
     },
-    aboutImage: {
+    aboutVideo: {
       width: '100%',
-      height: '200px',
+      height: '500px',
       objectFit: 'cover',
-      borderRadius: '15px',
+      borderRadius: '25px',
+      transition: 'transform 0.3s ease',
+      willChange: 'transform',
+      backfaceVisibility: 'hidden',
+      transform: 'translateZ(0)'
+    },
+    // Video Modal Styles
+    videoModal: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(0, 0, 0, 0.95)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+      padding: '2rem'
+    },
+    videoContainer: {
+      position: 'relative',
+      width: '100%',
+      maxWidth: '1000px',
+      background: '#000',
+      borderRadius: '20px',
+      overflow: 'hidden',
+      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+    },
+    video: {
+      width: '100%',
+      height: 'auto',
+      display: 'block'
+    },
+    closeButton: {
+      position: 'absolute',
+      top: '20px',
+      right: '20px',
+      background: 'rgba(255, 255, 255, 0.1)',
+      border: 'none',
+      color: 'white',
+      padding: '12px',
+      borderRadius: '50%',
+      cursor: 'pointer',
       transition: 'all 0.3s ease',
-      border: '1px solid rgba(255, 255, 255, 0.1)'
+      backdropFilter: 'blur(10px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    // Video Section - Full Width Inline
+    videoSection: {
+      marginTop: '4rem',
+      gridColumn: '1 / -1',
+      width: '100%',
+      borderRadius: '25px',
+      overflow: 'hidden',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)'
+    },
+    inlineVideo: {
+      width: '100%',
+      height: '100vh',
+      objectFit: 'cover',
+      display: 'block'
     },
     valuesSection: {
       marginTop: '4rem',
@@ -329,17 +792,21 @@ const About = () => {
       marginBottom: '3rem'
     },
     valuesTitle: {
-      fontSize: '2.5rem',
-      fontWeight: '700',
+      fontSize: '3rem',
+      fontWeight: '800',
       color: '#FFFFFF',
-      marginBottom: '1.5rem'
+      marginBottom: '1.5rem',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.02em'
     },
     valuesDescription: {
-      fontSize: '1.2rem',
+      fontSize: '1.3rem',
       color: 'rgba(255, 255, 255, 0.8)',
       maxWidth: '600px',
       margin: '0 auto',
-      lineHeight: '1.6'
+      lineHeight: '1.6',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     valuesGrid: {
       display: 'grid',
@@ -356,14 +823,18 @@ const About = () => {
       cursor: 'pointer'
     },
     valueTitle: {
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
       fontWeight: '700',
       color: '#FFFFFF',
-      marginBottom: '1rem'
+      marginBottom: '1rem',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     valueDescription: {
       color: 'rgba(255, 255, 255, 0.7)',
-      lineHeight: '1.6'
+      lineHeight: '1.6',
+      fontSize: '1.1rem',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     }
   };
 
@@ -371,6 +842,8 @@ const About = () => {
   React.useEffect(() => {
     if (!document.querySelector('#about-animations')) {
       const keyframes = `
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
         @keyframes pulse {
           0%, 100% { transform: scale(1) rotate(0deg); }
           50% { transform: scale(1.1) rotate(180deg); }
@@ -383,6 +856,10 @@ const About = () => {
     }
   }, []);
 
+  const handleVideoClick = () => {
+    // Video now plays inline, no modal needed
+  };
+
   return (
     <section style={aboutStyles.about} id="about">
       <div style={aboutStyles.backgroundEffect}></div>
@@ -394,10 +871,10 @@ const About = () => {
           </div>
           <h2 style={aboutStyles.title}>
             Revolutionizing Global
-            <span style={aboutStyles.highlight}> Quality Inspections</span>
+            <span> Quality Inspections</span>
           </h2>
           <p style={aboutStyles.description}>
-            Quality.AI is a revolutionary B2B marketplace connecting global traders with certified inspection firms. 
+            Quality.AI is a revolutionary B2B marketplace connecting global traders with certified inspection firms and freelancers. 
             We eliminate the hassle of traditional communication methods by providing a centralized platform where 
             you can create inspection demands and receive multiple competitive quotes.
           </p>
@@ -410,7 +887,7 @@ const About = () => {
             style={aboutStyles.ctaButton}
             onMouseOver={(e) => {
               e.target.style.transform = 'translateY(-3px)';
-              e.target.style.boxShadow = '0 15px 35px rgba(255, 107, 53, 0.4)';
+              e.target.style.boxShadow = 'none';
             }}
             onMouseOut={(e) => {
               e.target.style.transform = 'translateY(0)';
@@ -424,34 +901,32 @@ const About = () => {
         
         <div style={aboutStyles.aboutVisual}>
           <div style={aboutStyles.visualGlow}></div>
-          <img 
-            src={Services1} 
-            alt="Quality inspection technology"
-            style={{...aboutStyles.aboutImage, transform: 'translateY(-20px)'}}
-            onMouseOver={(e) => e.target.style.transform = 'translateY(-20px) scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'translateY(-20px) scale(1)'}
-          />
-          <img 
-            src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-            alt="Global trade network"
-            style={{...aboutStyles.aboutImage, transform: 'translateY(20px)'}}
-            onMouseOver={(e) => e.target.style.transform = 'translateY(20px) scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'translateY(20px) scale(1)'}
-          />
-          <img 
-            src="https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-            alt="Digital platform"
-            style={{...aboutStyles.aboutImage, transform: 'translateY(-20px)'}}
-            onMouseOver={(e) => e.target.style.transform = 'translateY(-20px) scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'translateY(-20px) scale(1)'}
-          />
-          <img 
-            src={Services2}
-            alt="Quality control process"
-            style={{...aboutStyles.aboutImage, transform: 'translateY(20px)'}}
-            onMouseOver={(e) => e.target.style.transform = 'translateY(20px) scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'translateY(20px) scale(1)'}
-          />
+          <video
+            style={aboutStyles.aboutVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            src={Scene2}
+            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        {/* Full Width Video Section */}
+        <div style={aboutStyles.videoSection}>
+          <video
+            style={aboutStyles.inlineVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            src={Scene1}
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div style={aboutStyles.valuesSection}>
@@ -470,10 +945,9 @@ const About = () => {
                 style={aboutStyles.valueCard}
                 onMouseOver={(e) => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.border = '1px solid rgba(255, 107, 53, 0.3)';
                   e.currentTarget.style.transform = 'translateY(-5px)';
                   const title = e.currentTarget.querySelector('.value-title');
-                  if (title) title.style.color = '#FF6B35';
+                  if (title) title.style.color = 'gray';
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
@@ -515,6 +989,8 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal - Removed as video now plays inline */}
     </section>
   );
 };

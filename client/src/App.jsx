@@ -170,6 +170,7 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import About from "./components/About";
+import LearnOurStory from "./components/LearnOurStory";
 
 
 const App = () => {

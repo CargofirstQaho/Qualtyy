@@ -166,9 +166,7 @@
 //   );
 // };
 // export default Contact;import React, { useState } from "react";
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
@@ -210,11 +208,11 @@ const Contact = () => {
     {
       icon: <MapPin size={24} />, 
       title: "Office",
-      details: ["WeWork-Vaishnavi Signatures", "Bellandur, Bangalore, 560103"],
+      details: ["WeWork-Vaishnavi Signature", "Bellandur, Bangalore, 560103"],
       description: "Visit our main office"
     },
     {
-      icon: <Clock className="h-6 w-6" />, 
+      icon: <Clock size={24} />, 
       title: "Hours",
       details: ["24/7 Support"],
       description: "We're here to help"
@@ -224,11 +222,25 @@ const Contact = () => {
   const contactStyles = {
     contact: {
       padding: '6rem 2rem',
-      background: '#F8F9FA'
+      background: '#000000',
+      position: 'relative',
+      overflow: 'hidden',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
+    },
+    backgroundEffect: {
+      position: 'absolute',
+      top: '20%',
+      right: '-20%',
+      width: '40%',
+      height: '60%',
+      background: 'radial-gradient(circle, rgba(162, 155, 254, 0.1) 0%, transparent 70%)',
+      animation: 'pulse 15s ease-in-out infinite'
     },
     container: {
       maxWidth: '1400px',
-      margin: '0 auto'
+      margin: '0 auto',
+      position: 'relative',
+      zIndex: 10
     },
     sectionHeader: {
       textAlign: 'center',
@@ -237,44 +249,40 @@ const Contact = () => {
     badge: {
       display: 'inline-flex',
       alignItems: 'center',
-      background: 'rgba(108, 92, 231, 0.1)',
-      color: '#6C5CE7',
-      padding: '0.5rem 1.5rem',
+      background: 'rgba(255, 255, 255, 0.1)',
+      color: '#FFFFFF',
+      padding: '1rem 2rem',
       borderRadius: '25px',
-      fontWeight: '600',
-      fontSize: '0.9rem',
+      fontWeight: '700',
+      fontSize: '1.2rem',
       marginBottom: '2rem',
-      border: '1px solid rgba(108, 92, 231, 0.2)'
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      backdropFilter: 'blur(10px)',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: '3rem',
+      fontSize: '5rem',
       fontWeight: '900',
       marginBottom: '2rem',
-      color: '#2D3436'
+      color: '#FFFFFF',
+      lineHeight: '1.1',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.03em'
     },
     highlight: {
-      position: 'relative',
       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text'
     },
-    underline: {
-      position: 'absolute',
-      bottom: '-8px',
-      left: 0,
-      width: '100%',
-      height: '12px',
-      background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(255, 107, 53, 0.2))',
-      zIndex: -1,
-      transform: 'rotate(1deg)'
-    },
     description: {
-      fontSize: '1.2rem',
-      color: 'rgba(45, 52, 54, 0.7)',
+      fontSize: '1.4rem',
+      color: 'rgba(255, 255, 255, 0.8)',
       maxWidth: '800px',
       margin: '0 auto',
-      lineHeight: '1.6'
+      lineHeight: '1.6',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     contactGrid: {
       display: 'grid',
@@ -284,20 +292,22 @@ const Contact = () => {
       alignItems: 'stretch'
     },
     contactInfo: {
-      background: 'white',
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)',
       padding: '3rem',
       borderRadius: '25px',
-      boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-      border: '1px solid rgba(108, 92, 231, 0.05)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between'
     },
     infoTitle: {
-      fontSize: '2rem',
-      fontWeight: '700',
+      fontSize: '2.5rem',
+      fontWeight: '800',
       marginBottom: '2.5rem',
-      color: '#2D3436'
+      color: '#FFFFFF',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.02em'
     },
     contactItem: {
       display: 'flex',
@@ -310,14 +320,15 @@ const Contact = () => {
     contactIcon: {
       width: '60px',
       height: '60px',
-      background: 'linear-gradient(135deg, #A29BFE, #6C5CE7)',
+      background: 'rgba(255, 255, 255, 0.1)',
       borderRadius: '15px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'white',
+      color: '#FFFFFF',
       flexShrink: 0,
-      transition: 'all 0.3s ease'
+      transition: 'all 0.3s ease',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
     },
     contactDetails: {
       flex: 1
@@ -325,33 +336,40 @@ const Contact = () => {
     contactTitle: {
       fontWeight: '700',
       marginBottom: '0.5rem',
-      color: '#2D3436',
-      fontSize: '1.1rem'
+      color: '#FFFFFF',
+      fontSize: '1.3rem',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     contactText: {
-      color: 'rgba(45, 52, 54, 0.8)',
-      fontSize: '1rem',
+      color: 'rgba(255, 255, 255, 0.8)',
+      fontSize: '1.1rem',
       lineHeight: '1.4',
-      marginBottom: '0.5rem'
+      marginBottom: '0.5rem',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     contactDescription: {
-      color: 'rgba(45, 52, 54, 0.5)',
-      fontSize: '0.9rem'
+      color: 'rgba(255, 255, 255, 0.6)',
+      fontSize: '1rem',
+      fontWeight: '500',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     contactForm: {
-      background: 'white',
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)',
       padding: '3rem',
       borderRadius: '25px',
-      boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-      border: '1px solid rgba(108, 92, 231, 0.05)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
       display: 'flex',
       flexDirection: 'column'
     },
     formTitle: {
-      fontSize: '2rem',
-      fontWeight: '700',
+      fontSize: '2.5rem',
+      fontWeight: '800',
       marginBottom: '2.5rem',
-      color: '#2D3436'
+      color: '#FFFFFF',
+      fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+      letterSpacing: '-0.02em'
     },
     formGroup: {
       marginBottom: '1.5rem'
@@ -363,97 +381,121 @@ const Contact = () => {
     },
     label: {
       display: 'block',
-      fontWeight: '600',
+      fontWeight: '700',
       marginBottom: '0.75rem',
-      color: '#2D3436',
-      fontSize: '1rem'
+      color: '#FFFFFF',
+      fontSize: '1.1rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     input: {
       width: '100%',
       padding: '0.75rem 1.25rem',
-      border: '2px solid #E8EAED',
+      border: '2px solid rgba(255, 255, 255, 0.2)',
       borderRadius: '12px',
-      fontSize: '1rem',
+      fontSize: '1.1rem',
       transition: 'all 0.3s ease',
-      fontFamily: 'inherit',
-      backgroundColor: '#FAFBFC',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      color: '#FFFFFF',
       height: '52px',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      fontWeight: '500'
     },
     select: {
       width: '100%',
       padding: '0.75rem 1.25rem',
-      border: '2px solid #E8EAED',
+      border: '2px solid rgba(255, 255, 255, 0.2)',
       borderRadius: '12px',
-      fontSize: '1rem',
+      fontSize: '1.1rem',
       transition: 'all 0.3s ease',
-      fontFamily: 'inherit',
-      backgroundColor: '#FAFBFC',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      color: '#FFFFFF',
       height: '52px',
       boxSizing: 'border-box',
       cursor: 'pointer',
       appearance: 'none',
-      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
       backgroundPosition: 'right 1rem center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '1rem',
       paddingRight: '3rem',
-      color: '#2D3436',
-      lineHeight: '1.2',
-      display: 'flex',
-      alignItems: 'center'
+      fontWeight: '500'
     },
     textarea: {
       width: '100%',
       padding: '1rem 1.25rem',
-      border: '2px solid #E8EAED',
+      border: '2px solid rgba(255, 255, 255, 0.2)',
       borderRadius: '12px',
-      fontSize: '1rem',
+      fontSize: '1.1rem',
       transition: 'all 0.3s ease',
-      fontFamily: 'inherit',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       resize: 'vertical',
       minHeight: '120px',
-      backgroundColor: '#FAFBFC',
-      boxSizing: 'border-box'
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      color: '#FFFFFF',
+      boxSizing: 'border-box',
+      fontWeight: '500'
     },
     submitBtn: {
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-      color: 'white',
-      padding: '1.25rem 3rem',
-      border: 'none',
+      background: 'rgba(255, 255, 255, 0.1)',
+      color: '#FFFFFF',
+      padding: '1.3rem 3rem',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
       borderRadius: '30px',
-      fontSize: '1.1rem',
-      fontWeight: '600',
+      fontSize: '1.2rem',
+      fontWeight: '700',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
       width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '0.75rem'
+      gap: '0.75rem',
+      backdropFilter: 'blur(10px)',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     }
   };
 
+  // Add keyframes for animations
+  useEffect(() => {
+    if (!document.querySelector('#contact-animations')) {
+      const keyframes = `
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
+        @keyframes pulse {
+          0%, 100% { transform: scale(1) rotate(0deg); }
+          50% { transform: scale(1.1) rotate(180deg); }
+        }
+      `;
+      const style = document.createElement('style');
+      style.id = 'contact-animations';
+      style.textContent = keyframes;
+      document.head.appendChild(style);
+    }
+  }, []);
+
   const handleFocus = (e) => {
-    e.target.style.borderColor = '#6C5CE7';
-    e.target.style.boxShadow = '0 0 0 3px rgba(108, 92, 231, 0.1)';
+    e.target.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+    e.target.style.boxShadow = '0 0 0 3px rgba(255, 255, 255, 0.1)';
   };
 
   const handleBlur = (e) => {
-    e.target.style.borderColor = '#E8EAED';
+    e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
     e.target.style.boxShadow = 'none';
   };
 
   return (
     <section style={contactStyles.contact} id="contact">
+      <div style={contactStyles.backgroundEffect}></div>
+      
       <div style={contactStyles.container}>
         <div style={contactStyles.sectionHeader}>
           <div style={contactStyles.badge}>Get In Touch</div>
           <h2 style={contactStyles.title}>
             Ready to Start Your{' '}
-            <span style={contactStyles.highlight}>
+            <span >
               Quality Inspection
-              <div style={contactStyles.underline}></div>
             </span>{' '}
             Journey?
           </h2>
@@ -476,14 +518,16 @@ const Contact = () => {
                       const icon = e.currentTarget.querySelector('.contact-icon');
                       if (icon) {
                         icon.style.transform = 'scale(1.1)';
-                        icon.style.background = 'linear-gradient(135deg, #FF6B35, #FD79A8)';
+                        icon.style.background = 'rgba(255, 255, 255, 0.15)';
+                        icon.style.border = '1px solid rgba(255, 255, 255, 0.3)';
                       }
                     }}
                     onMouseOut={(e) => {
                       const icon = e.currentTarget.querySelector('.contact-icon');
                       if (icon) {
                         icon.style.transform = 'scale(1)';
-                        icon.style.background = 'linear-gradient(135deg, #A29BFE, #6C5CE7)';
+                        icon.style.background = 'rgba(255, 255, 255, 0.1)';
+                        icon.style.border = '1px solid rgba(255, 255, 255, 0.2)';
                       }
                     }}
                   >
@@ -501,120 +545,6 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            
-            {/* <div style={{
-              marginTop: '2rem',
-              padding: '2rem',
-              background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(255, 107, 53, 0.05))',
-              borderRadius: '15px',
-              border: '1px solid rgba(108, 92, 231, 0.1)'
-            }}>
-              <h4 style={{
-                fontSize: '1.2rem',
-                fontWeight: '700',
-                color: '#2D3436',
-                marginBottom: '1rem'
-              }}>
-                Why Choose Quality.AI?
-              </h4>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0
-              }}>
-                <li style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                  color: 'rgba(45, 52, 54, 0.8)',
-                  fontSize: '0.9rem'
-                }}>
-                  <div style={{
-                    width: '16px',
-                    height: '16px',
-                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '0.7rem',
-                    fontWeight: 'bold',
-                    flexShrink: 0
-                  }}>✓</div>
-                  Global network of verified inspectors
-                </li>
-                <li style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                  color: 'rgba(45, 52, 54, 0.8)',
-                  fontSize: '0.9rem'
-                }}>
-                  <div style={{
-                    width: '16px',
-                    height: '16px',
-                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '0.7rem',
-                    fontWeight: 'bold',
-                    flexShrink: 0
-                  }}>✓</div>
-                  Competitive pricing & transparency
-                </li>
-                <li style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                  color: 'rgba(45, 52, 54, 0.8)',
-                  fontSize: '0.9rem'
-                }}>
-                  <div style={{
-                    width: '16px',
-                    height: '16px',
-                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '0.7rem',
-                    fontWeight: 'bold',
-                    flexShrink: 0
-                  }}>✓</div>
-                  Real-time reporting & documentation
-                </li>
-                <li style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: 'rgba(45, 52, 54, 0.8)',
-                  fontSize: '0.9rem'
-                }}>
-                  <div style={{
-                    width: '16px',
-                    height: '16px',
-                    background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '0.7rem',
-                    fontWeight: 'bold',
-                    flexShrink: 0
-                  }}>✓</div>
-                  24/7 customer support
-                </li>
-              </ul>
-            </div> */}
           </div>
 
           <div style={contactStyles.contactForm}>
@@ -724,36 +654,19 @@ const Contact = () => {
                     required
                     style={{
                       ...contactStyles.select,
-                      color: formData.userType ? '#2D3436' : '#9CA3AF'
+                      color: formData.userType ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)'
                     }}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   >
-                    <option value="" style={{ color: '#9CA3AF' }}>Select your role</option>
-                    <option value="importer" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Importer</option>
-                    <option value="exporter" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Exporter</option>
-                    <option value="both" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Both</option>
-                    <option value="other" style={{ color: '#2D3436', backgroundColor: 'white', padding: '0.5rem' }}>Other</option>
+                    <option value="" style={{ color: 'rgba(255, 255, 255, 0.6)', backgroundColor: '#2D3436' }}>Select your role</option>
+                    <option value="importer" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Importer</option>
+                    <option value="exporter" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Exporter</option>
+                    <option value="both" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Both</option>
+                    <option value="other" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Other</option>
                   </select>
                 </div>
               </div>
-
-              {/* <div style={contactStyles.formGroup}>
-                <label htmlFor="message" style={contactStyles.label}>
-                  Message *
-                </label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  value={formData.message} 
-                  onChange={handleChange} 
-                  required 
-                  style={contactStyles.textarea}
-                  placeholder="Tell us about your quality inspection needs and requirements..."
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                />
-              </div> */}
 
               <div style={contactStyles.formGroup}>
                 <label htmlFor="additionalDetails" style={contactStyles.label}>
@@ -778,18 +691,20 @@ const Contact = () => {
                 style={{
                   ...contactStyles.submitBtn,
                   opacity: isSubmitted ? 0.8 : 1,
-                  background: isSubmitted ? 'linear-gradient(135deg, #00b894, #00a085)' : 'linear-gradient(135deg, #6C5CE7, #FF6B35)'
+                  background: isSubmitted ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseOver={(e) => {
                   if (!isSubmitted) {
                     e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 10px 25px rgba(108, 92, 231, 0.3)';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                    e.target.style.border = '1px solid rgba(255, 255, 255, 0.3)';
                   }
                 }}
                 onMouseOut={(e) => {
                   if (!isSubmitted) {
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'none';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)';
                   }
                 }}
               >
