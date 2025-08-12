@@ -525,10 +525,10 @@
 
 import React,{useState} from 'react';
 import { Award, Users, Target, TrendingUp, ArrowRight } from 'lucide-react';
-import Services1 from '../assets/services1.png';
-import Services2 from '../assets/services2.png';
-import services3 from '../assets/services3.jpeg';
-import services4 from '../assets/services4.webp';
+import Services1 from '../assets/Services1.png';
+import Services2 from '../assets/Services2.png';
+import services3 from '../assets/Services3.jpeg';
+import services4 from '../assets/Services4.webp';
 import Scene1 from '../assets/Scene1.mp4';
 import Scene2 from '../assets/Scene2.mp4';
 
