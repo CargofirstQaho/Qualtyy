@@ -946,6 +946,7 @@ import HomeVideo from '../assets/HomeVideo.mp4';
 
 const Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const stats = [
     { number: '1000+', label: 'Global Inspectors' },
@@ -963,28 +964,51 @@ const Hero = () => {
     "Market analytics tool with AI based insights for your trade decisions"
   ];
 
-  // Handle scroll event
+  // Handle scroll event and mobile detection
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const heroHeight = window.innerHeight;
       const threshold = heroHeight * 0.3; // Show content when scrolled 30% of viewport
-      setIsScrolled(scrollY > threshold);
+      
+      if (isMobile) {
+        // On mobile, always show content and hide fullscreen video
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(scrollY > threshold);
+      }
     };
 
+    // Check on mount
+    checkMobile();
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('resize', () => {
+      checkMobile();
+      handleScroll();
+    });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, [isMobile]);
 
   const heroStyles = {
     hero: {
       background: '#000000ff',
       minHeight: '100vh',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '80px',
+      paddingTop: isMobile ? '80px' : '80px',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     fullscreenVideoContainer: {
@@ -996,12 +1020,30 @@ const Hero = () => {
       zIndex: 1,
       opacity: isScrolled ? 0 : 1,
       transition: 'opacity 1s ease-in-out',
-      pointerEvents: isScrolled ? 'none' : 'auto'
+      pointerEvents: isScrolled ? 'none' : 'auto',
+      display: isMobile ? 'none' : 'block'
     },
     fullscreenVideo: {
       width: '100%',
       height: '100%',
       objectFit: 'cover'
+    },
+    mobileHomeVideo: {
+      position: 'relative',
+      width: 'calc(100% - 2rem)',
+      height: '250px',
+      marginBottom: '2rem',
+      borderRadius: '15px',
+      overflow: 'hidden',
+      margin: '1rem',
+      marginTop: '20px',
+      zIndex: 10
+    },
+    mobileHomeVideoElement: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      borderRadius: '15px'
     },
     globeBackground: {
       position: 'absolute',
@@ -1044,18 +1086,21 @@ const Hero = () => {
       maxWidth: '1400px',
       margin: '0 auto',
       padding: '2rem',
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
+      display: isMobile ? 'flex' : 'grid',
+      flexDirection: isMobile ? 'column' : 'unset',
+      gridTemplateColumns: isMobile ? 'unset' : '1fr 1fr',
       gap: '4rem',
       alignItems: 'center',
       position: 'relative',
       zIndex: 15,
       opacity: isScrolled ? 1 : 0,
       transform: isScrolled ? 'translateY(0)' : 'translateY(50px)',
-      transition: 'opacity 1s ease-in-out, transform 1s ease-in-out'
+      transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
+      textAlign: isMobile ? 'center' : 'left'
     },
     heroText: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      order: isMobile ? 2 : 'unset'
     },
     badge: {
       display: 'inline-flex',
@@ -1066,13 +1111,13 @@ const Hero = () => {
       padding: '1rem 2rem',
       marginBottom: '2rem',
       border: '1px solid rgba(80, 80, 80, 0.3)',
-      fontSize: '1.2rem',
+      fontSize: isMobile ? '1rem' : '1.2rem',
       fontWeight: '700',
       color: '#CCCCCC',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: '5.5rem',
+      fontSize: isMobile ? '3rem' : '5.5rem',
       fontWeight: '900',
       lineHeight: '1.05',
       marginBottom: '2rem',
@@ -1087,7 +1132,7 @@ const Hero = () => {
       backgroundClip: 'text'
     },
     description: {
-      fontSize: '1.5rem',
+      fontSize: isMobile ? '1.2rem' : '1.5rem',
       color: 'rgba(255, 255, 255, 0.8)',
       marginBottom: '2rem',
       fontWeight: '500',
@@ -1097,7 +1142,8 @@ const Hero = () => {
     featureList: {
       listStyle: 'none',
       marginBottom: '3rem',
-      padding: 0
+      padding: 0,
+      textAlign: isMobile ? 'left' : 'left'
     },
     featureItem: {
       display: 'flex',
@@ -1106,8 +1152,9 @@ const Hero = () => {
       marginBottom: '1rem',
       color: '#FFFFFF',
       fontWeight: '600',
-      fontSize: '1.2rem',
-      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
+      fontSize: isMobile ? '1rem' : '1.2rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      justifyContent: isMobile ? 'flex-start' : 'flex-start'
     },
     featureIcon: {
       width: '28px',
@@ -1124,7 +1171,9 @@ const Hero = () => {
     buttonContainer: {
       display: 'flex',
       gap: '1rem',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      justifyContent: isMobile ? 'center' : 'flex-start',
+      flexDirection: isMobile ? 'column' : 'row'
     },
     primaryButton: {
       background: 'linear-gradient(135deg, #333333, #666666)',
@@ -1135,12 +1184,14 @@ const Hero = () => {
       fontWeight: '700',
       display: 'inline-flex',
       alignItems: 'center',
+      justifyContent: 'center',
       gap: '0.5rem',
       transition: 'all 0.3s ease',
       border: 'none',
       cursor: 'pointer',
-      fontSize: '1.2rem',
-      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
+      fontSize: isMobile ? '1rem' : '1.2rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      width: isMobile ? '100%' : 'auto'
     },
     secondaryButton: {
       background: 'rgba(255, 255, 255, 0.1)',
@@ -1151,15 +1202,19 @@ const Hero = () => {
       fontWeight: '700',
       display: 'inline-flex',
       alignItems: 'center',
+      justifyContent: 'center',
       gap: '0.5rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
       transition: 'all 0.3s ease',
       backdropFilter: 'blur(10px)',
-      fontSize: '1.2rem',
-      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
+      fontSize: isMobile ? '1rem' : '1.2rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      width: isMobile ? '100%' : 'auto'
     },
     visualContainer: {
-      position: 'relative'
+      position: 'relative',
+      order: isMobile ? 3 : 'unset',
+      display: isMobile ? 'none' : 'block'
     },
     videoContainer: {
       position: 'relative',
@@ -1176,6 +1231,20 @@ const Hero = () => {
       borderRadius: '25px',
       borderColor:"rgba(255, 255, 255, 0.1)",
       borderWidth: '2px',
+    },
+    mobileSceneVideo: {
+      width: 'calc(100% - 2rem)',
+      height: '300px',
+      borderRadius: '15px',
+      overflow: 'hidden',
+      margin: '2rem 1rem 1rem 1rem',
+      order: 4
+    },
+    mobileSceneVideoElement: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      borderRadius: '15px'
     },
     statsContainer: {
       position: 'absolute',
@@ -1280,30 +1349,6 @@ const Hero = () => {
           }
         }
         
-        .hero-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 2rem;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          align-items: center;
-          position: relative;
-          z-index: 15;
-          transition: all 0.3s ease;
-        }
-        
-        .hero-title {
-          font-size: 5.5rem;
-          font-weight: 900;
-          line-height: 1.05;
-          margin-bottom: 2rem;
-          color: #FFFFFF;
-          transition: all 0.3s ease;
-          font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
-          letter-spacing: -0.03em;
-        }
-
         .hero-background-enhanced {
           animation: float 20s ease-in-out infinite, pulseGlow 8s ease-in-out infinite;
         }
@@ -1316,24 +1361,6 @@ const Hero = () => {
           animation: subtleShift 30s ease-in-out infinite;
           transition: opacity 2s ease-in-out, transform 3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        @media (max-width: 768px) {
-          .hero-container {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            text-align: center;
-            padding: 1rem;
-          }
-          
-          .hero-title {
-            font-size: 3.5rem;
-          }
-          
-          .stats-container {
-            position: static !important;
-            margin-top: 2rem;
-          }
-        }
       `;
       const style = document.createElement('style');
       style.id = 'hero-styles';
@@ -1344,22 +1371,41 @@ const Hero = () => {
 
   return (
     <section style={heroStyles.hero} id="home">
-      {/* Fullscreen video that fades out on scroll */}
-      <div style={heroStyles.fullscreenVideoContainer}>
-        <video
-          style={heroStyles.fullscreenVideo}
-          src={HomeVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* Fullscreen video that fades out on scroll - hidden on mobile */}
+      {!isMobile && (
+        <div style={heroStyles.fullscreenVideoContainer}>
+          <video
+            style={heroStyles.fullscreenVideo}
+            src={HomeVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
 
-      {/* Hero content that appears on scroll */}
+      {/* Mobile HomeVideo - shows at top on mobile only */}
+      {isMobile && (
+        <div style={heroStyles.mobileHomeVideo}>
+          <video
+            style={heroStyles.mobileHomeVideoElement}
+            src={HomeVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+
+      {/* Hero content backgrounds */}
       <div 
         style={heroStyles.globeBackground}
         className="globe-background-enhanced"
@@ -1373,11 +1419,11 @@ const Hero = () => {
         className="hero-background-secondary-enhanced"
       ></div>
       
-      <div className="hero-container" style={heroStyles.container}>
+      <div style={heroStyles.container}>
         <div style={heroStyles.heroText}>
          
           
-          <h1 className="hero-title">
+          <h1 style={heroStyles.title}>
             Global <span >Quality Inspections</span> For Global Trade
           </h1>
 
@@ -1431,6 +1477,7 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Desktop Scene video */}
         <div style={heroStyles.visualContainer}>
           <div style={heroStyles.videoContainer}>
             <video
@@ -1447,6 +1494,23 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Scene video - shows after text content on mobile only */}
+      {isMobile && (
+        <div style={heroStyles.mobileSceneVideo}>
+          <video
+            style={heroStyles.mobileSceneVideoElement}
+            src={Scene}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
     </section>
   );
 };
