@@ -1459,6 +1459,7 @@
 
 // export default Services;
 
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Leaf, BarChart3, Shield, Zap, Package, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -1606,13 +1607,14 @@ const Services = () => {
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: isMobile ? '3rem' : '5rem',
+      fontSize: isMobile ? '2.2rem' : '5rem',
       fontWeight: '900',
       lineHeight: '1.1',
       marginBottom: '2rem',
       color: '#FFFFFF',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
-      letterSpacing: '-0.03em'
+      letterSpacing: '-0.03em',
+      textAlign: isMobile ? 'center' : 'center'
     },
     highlight: {
       background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
@@ -1632,10 +1634,10 @@ const Services = () => {
     featuredGrid: {
       display: 'grid',
       gridTemplateColumns: '1fr',
-      gap: '2rem',
+      gap: isMobile ? '1.5rem' : '2rem',
       marginBottom: '5rem',
-      maxWidth: '1200px',
-      margin: '0 auto 5rem auto'
+      maxWidth: isMobile ? '350px' : '1200px',
+      margin: isMobile ? '0 auto 3rem auto' : '0 auto 5rem auto'
     },
     servicesGrid: {
       display: 'grid',
@@ -1702,8 +1704,8 @@ const Services = () => {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
       color: '#FFFFFF',
-      padding: isMobile ? '1.5rem' : '2rem',
-      borderRadius: '25px',
+      padding: isMobile ? '1.2rem' : '2rem',
+      borderRadius: isMobile ? '15px' : '25px',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       transition: 'all 0.3s ease',
       position: 'relative',
@@ -1711,11 +1713,11 @@ const Services = () => {
       cursor: 'pointer',
       display: 'grid',
       gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-      gap: isMobile ? '1.5rem' : '3rem',
+      gap: isMobile ? '1rem' : '3rem',
       alignItems: 'center',
       minHeight: isMobile ? 'auto' : '280px',
-      maxWidth: '100%',
-      margin: '0 auto 1.5rem auto'
+      maxWidth: isMobile ? '320px' : '100%',
+      margin: isMobile ? '0 auto 1rem auto' : '0 auto 1.5rem auto'
     },
     serviceIcon: {
       width: isMobile ? '45px' : '55px',
@@ -1731,14 +1733,14 @@ const Services = () => {
       border: '1px solid rgba(255, 255, 255, 0.2)'
     },
     featuredServiceIcon: {
-      width: '65px',
-      height: '65px',
+      width: isMobile ? '50px' : '65px',
+      height: isMobile ? '50px' : '65px',
       background: 'rgba(255, 255, 255, 0.15)',
-      borderRadius: '20px',
+      borderRadius: isMobile ? '15px' : '20px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: '1.5rem',
+      marginBottom: isMobile ? '1rem' : '1.5rem',
       color: '#FFFFFF',
       transition: 'transform 0.3s ease',
       border: '1px solid rgba(255, 255, 255, 0.2)'
@@ -1752,9 +1754,9 @@ const Services = () => {
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     featuredServiceTitle: {
-      fontSize: '1.8rem',
+      fontSize: isMobile ? '1.3rem' : '1.8rem',
       fontWeight: '800',
-      marginBottom: '1rem',
+      marginBottom: isMobile ? '0.8rem' : '1rem',
       color: '#FFFFFF',
       lineHeight: '1.3',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
@@ -1770,9 +1772,9 @@ const Services = () => {
     },
     featuredServiceDescription: {
       color: 'rgba(255, 255, 255, 0.8)',
-      marginBottom: '1.5rem',
+      marginBottom: isMobile ? '1rem' : '1.5rem',
       lineHeight: '1.6',
-      fontSize: '1.2rem',
+      fontSize: isMobile ? '0.9rem' : '1.2rem',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
@@ -1807,10 +1809,10 @@ const Services = () => {
       display: 'flex',
       alignItems: 'center',
       gap: '0.6rem',
-      marginBottom: '0.7rem',
+      marginBottom: isMobile ? '0.5rem' : '0.7rem',
       color: 'rgba(255, 255, 255, 0.9)',
       fontWeight: '600',
-      fontSize: '1.1rem',
+      fontSize: isMobile ? '0.8rem' : '1.1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     featureIcon: {
@@ -1827,8 +1829,8 @@ const Services = () => {
       flexShrink: 0
     },
     featuredFeatureIcon: {
-      width: '20px',
-      height: '20px',
+      width: isMobile ? '16px' : '20px',
+      height: isMobile ? '16px' : '20px',
       background: 'rgba(255, 255, 255, 0.2)',
       color: '#FFFFFF',
       borderRadius: '50%',
@@ -1857,7 +1859,7 @@ const Services = () => {
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     featuredWhyTitle: {
-      fontSize: '1.3rem',
+      fontSize: isMobile ? '1.1rem' : '1.3rem',
       fontWeight: '700',
       color: '#FFFFFF',
       marginBottom: '0.75rem',
@@ -1883,10 +1885,10 @@ const Services = () => {
       display: 'flex',
       alignItems: 'flex-start',
       gap: '0.5rem',
-      marginBottom: '0.6rem',
+      marginBottom: isMobile ? '0.4rem' : '0.6rem',
       color: 'rgba(255, 255, 255, 0.8)',
       fontWeight: '500',
-      fontSize: '1rem',
+      fontSize: isMobile ? '0.8rem' : '1rem',
       lineHeight: '1.4',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
