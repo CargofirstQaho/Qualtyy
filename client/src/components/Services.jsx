@@ -1459,12 +1459,14 @@
 
 // export default Services;
 
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Leaf, BarChart3, Shield, Zap, Package, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showAllServices, setShowAllServices] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   
   const featuredServices = [
@@ -1550,6 +1552,18 @@ const Services = () => {
   const initialServices = services.slice(0, 3);
   const additionalServices = services.slice(3);
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const servicesStyles = {
     services: {
       padding: '6rem 2rem',
@@ -1571,7 +1585,8 @@ const Services = () => {
       maxWidth: '1400px',
       margin: '0 auto',
       position: 'relative',
-      zIndex: 10
+      zIndex: 10,
+      padding: isMobile ? '0 1rem' : '0'
     },
     sectionHeader: {
       textAlign: 'center',
@@ -1582,17 +1597,17 @@ const Services = () => {
       alignItems: 'center',
       background: 'rgba(255, 255, 255, 0.1)',
       color: '#FFFFFF',
-      padding: '1rem 2rem',
+      padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
       borderRadius: '25px',
       fontWeight: '700',
-      fontSize: '1.2rem',
+      fontSize: isMobile ? '1rem' : '1.2rem',
       marginBottom: '2rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       backdropFilter: 'blur(10px)',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: '5rem',
+      fontSize: isMobile ? '3rem' : '5rem',
       fontWeight: '900',
       lineHeight: '1.1',
       marginBottom: '2rem',
@@ -1607,7 +1622,7 @@ const Services = () => {
       backgroundClip: 'text'
     },
     description: {
-      fontSize: '1.4rem',
+      fontSize: isMobile ? '1.1rem' : '1.4rem',
       color: 'rgba(255, 255, 255, 0.8)',
       maxWidth: '800px',
       margin: '0 auto',
@@ -1625,19 +1640,23 @@ const Services = () => {
     },
     servicesGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: '2rem',
-      marginTop: '4rem'
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+      gap: isMobile ? '1rem' : '2rem',
+      marginTop: '4rem',
+      maxWidth: isMobile ? '350px' : 'none',
+      margin: isMobile ? '4rem auto 0 auto' : '4rem 0 0 0'
     },
     additionalServicesGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: '2rem',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+      gap: isMobile ? '1rem' : '2rem',
       marginTop: '2rem',
       opacity: showAllServices ? 1 : 0,
       maxHeight: showAllServices ? '2000px' : '0',
       overflow: 'hidden',
-      transition: 'all 0.6s ease-in-out'
+      transition: 'all 0.6s ease-in-out',
+      maxWidth: isMobile ? '350px' : 'none',
+      margin: isMobile ? '2rem auto 0 auto' : '2rem 0 0 0'
     },
     viewAllButton: {
       display: 'flex',
@@ -1662,8 +1681,8 @@ const Services = () => {
     serviceCard: {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
-      padding: '2rem 1.5rem',
-      borderRadius: '20px',
+      padding: isMobile ? '1.2rem 1rem' : '2rem 1.5rem',
+      borderRadius: isMobile ? '15px' : '20px',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       transition: 'all 0.3s ease',
       position: 'relative',
@@ -1671,15 +1690,16 @@ const Services = () => {
       cursor: 'pointer',
       display: 'flex',
       flexDirection: 'column',
-      height: '100%',
-      maxWidth: '100%',
-      margin: '0 auto'
+      height: isMobile ? 'auto' : '100%',
+      maxWidth: isMobile ? '320px' : '100%',
+      margin: isMobile ? '0 auto' : '0 auto',
+      minHeight: isMobile ? 'auto' : 'auto'
     },
     featuredServiceCard: {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
       color: '#FFFFFF',
-      padding: '2rem',
+      padding: isMobile ? '1.5rem' : '2rem',
       borderRadius: '25px',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       transition: 'all 0.3s ease',
@@ -1687,22 +1707,22 @@ const Services = () => {
       overflow: 'hidden',
       cursor: 'pointer',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '3rem',
+      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+      gap: isMobile ? '1.5rem' : '3rem',
       alignItems: 'center',
-      minHeight: '280px',
+      minHeight: isMobile ? 'auto' : '280px',
       maxWidth: '100%',
       margin: '0 auto 1.5rem auto'
     },
     serviceIcon: {
-      width: '55px',
-      height: '55px',
+      width: isMobile ? '45px' : '55px',
+      height: isMobile ? '45px' : '55px',
       background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '15px',
+      borderRadius: isMobile ? '12px' : '15px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: '1.5rem',
+      marginBottom: isMobile ? '1rem' : '1.5rem',
       color: '#FFFFFF',
       transition: 'transform 0.3s ease',
       border: '1px solid rgba(255, 255, 255, 0.2)'
@@ -1721,9 +1741,9 @@ const Services = () => {
       border: '1px solid rgba(255, 255, 255, 0.2)'
     },
     serviceTitle: {
-      fontSize: '1.5rem',
+      fontSize: isMobile ? '1.1rem' : '1.5rem',
       fontWeight: '700',
-      marginBottom: '0.75rem',
+      marginBottom: isMobile ? '0.5rem' : '0.75rem',
       color: '#FFFFFF',
       lineHeight: '1.3',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
@@ -1741,7 +1761,7 @@ const Services = () => {
       marginBottom: '1.5rem',
       lineHeight: '1.5',
       flex: '1',
-      fontSize: '1.1rem',
+      fontSize: isMobile ? '1rem' : '1.1rem',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
@@ -1757,7 +1777,7 @@ const Services = () => {
       listStyle: 'none',
       padding: 0,
       margin: 0,
-      minHeight: '120px',
+      minHeight: isMobile ? 'auto' : '120px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start'
@@ -1777,7 +1797,7 @@ const Services = () => {
       marginBottom: '0.6rem',
       color: 'rgba(255, 255, 255, 0.8)',
       fontWeight: '600',
-      fontSize: '1rem',
+      fontSize: isMobile ? '0.9rem' : '1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     featuredFeatureItem: {
@@ -1915,7 +1935,7 @@ const Services = () => {
       border: '1px solid rgba(255, 255, 255, 0.1)'
     },
     ctaTitle: {
-      fontSize: '3rem',
+      fontSize: isMobile ? '2rem' : '3rem',
       fontWeight: '800',
       marginBottom: '1rem',
       color: '#FFFFFF',
@@ -1923,7 +1943,7 @@ const Services = () => {
       letterSpacing: '-0.02em'
     },
     ctaDescription: {
-      fontSize: '1.3rem',
+      fontSize: isMobile ? '1.1rem' : '1.3rem',
       color: 'rgba(255, 255, 255, 0.7)',
       marginBottom: '2rem',
       maxWidth: '600px',
@@ -1991,88 +2011,6 @@ const Services = () => {
           to {
             opacity: 1;
             transform: translateY(0);
-          }
-        }
-        
-        /* Mobile responsive grid - EXACTLY 2 columns on mobile */
-        @media (max-width: 768px) {
-          .services-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 1rem !important;
-            max-width: 100% !important;
-          }
-          
-          .additional-services-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 1rem !important;
-            max-width: 100% !important;
-          }
-          
-          .featured-service-card {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-            min-height: auto !important;
-            padding: 1.5rem !important;
-          }
-          
-          .service-card {
-            padding: 1.5rem 1rem !important;
-          }
-          
-          .service-title {
-            font-size: 1.3rem !important;
-          }
-          
-          .service-description {
-            font-size: 1rem !important;
-          }
-          
-          .section-title {
-            font-size: 3rem !important;
-          }
-          
-          .badge {
-            font-size: 1rem !important;
-            padding: 0.8rem 1.5rem !important;
-          }
-          
-          .cta-title {
-            font-size: 2rem !important;
-          }
-          
-          .cta-description {
-            font-size: 1.1rem !important;
-          }
-        }
-        
-        /* Very small mobile devices */
-        @media (max-width: 480px) {
-          .services-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.8rem !important;
-            max-width: 100% !important;
-          }
-          
-          .additional-services-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.8rem !important;
-            max-width: 100% !important;
-          }
-          
-          .service-card {
-            padding: 1.2rem 0.8rem !important;
-          }
-          
-          .service-title {
-            font-size: 1.2rem !important;
-          }
-          
-          .service-description {
-            font-size: 0.95rem !important;
-          }
-          
-          .feature-item {
-            font-size: 0.9rem !important;
           }
         }
       `;
