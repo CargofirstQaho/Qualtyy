@@ -1459,7 +1459,6 @@
 
 // export default Services;
 
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Leaf, BarChart3, Shield, Zap, Package, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -1656,7 +1655,11 @@ const Services = () => {
       overflow: 'hidden',
       transition: 'all 0.6s ease-in-out',
       maxWidth: isMobile ? '350px' : 'none',
-      margin: isMobile ? '2rem auto 0 auto' : '2rem 0 0 0'
+      margin: isMobile 
+        ? showAllServices 
+          ? '2rem auto 0 auto' 
+          : '2rem auto 0 auto'
+        : '2rem 0 0 0'
     },
     viewAllButton: {
       display: 'flex',
@@ -1758,10 +1761,10 @@ const Services = () => {
     },
     serviceDescription: {
       color: 'rgba(255, 255, 255, 0.7)',
-      marginBottom: '1.5rem',
+      marginBottom: isMobile ? '1rem' : '1.5rem',
       lineHeight: '1.5',
       flex: '1',
-      fontSize: isMobile ? '1rem' : '1.1rem',
+      fontSize: isMobile ? '0.9rem' : '1.1rem',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
@@ -1794,10 +1797,10 @@ const Services = () => {
       display: 'flex',
       alignItems: 'center',
       gap: '0.6rem',
-      marginBottom: '0.6rem',
+      marginBottom: isMobile ? '0.4rem' : '0.6rem',
       color: 'rgba(255, 255, 255, 0.8)',
       fontWeight: '600',
-      fontSize: isMobile ? '0.9rem' : '1rem',
+      fontSize: isMobile ? '0.8rem' : '1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     featuredFeatureItem: {
@@ -1811,8 +1814,8 @@ const Services = () => {
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     featureIcon: {
-      width: '18px',
-      height: '18px',
+      width: isMobile ? '16px' : '18px',
+      height: isMobile ? '16px' : '18px',
       background: 'rgba(255, 255, 255, 0.2)',
       color: '#FFFFFF',
       borderRadius: '50%',
@@ -2025,8 +2028,8 @@ const Services = () => {
         }
       },
       {
-        threshold: 0.2,
-        rootMargin: '-50px 0px -50px 0px'
+        threshold: 0.1,
+        rootMargin: '-20px 0px -20px 0px'
       }
     );
 
@@ -2034,12 +2037,17 @@ const Services = () => {
       observer.observe(sectionRef.current);
     }
 
+    // For mobile, set visible immediately to avoid animation issues
+    if (isMobile) {
+      setIsVisible(true);
+    }
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   // Fixed hover handlers for buttons
   const handleButtonHover = (e) => {
@@ -2057,38 +2065,45 @@ const Services = () => {
   const renderServiceCard = (service, index, isAdditional = false) => {
     const animationDelay = isAdditional ? (index * 0.15) : ((index % 4) * 0.15);
     
+    // For mobile, always show cards without complex animations
+    const shouldShowCard = isMobile ? true : (isAdditional && showAllServices) || (!isAdditional && isVisible);
+    
     return (
       <div 
         key={isAdditional ? `additional-${index}` : index} 
         className={`service-card service-card-${index}`}
         style={{
           ...servicesStyles.serviceCard,
-          opacity: (isAdditional && showAllServices) || (!isAdditional && isVisible) ? 1 : 0,
-          transform: (isAdditional && showAllServices) || (!isAdditional && isVisible)
+          opacity: shouldShowCard ? 1 : 0,
+          transform: shouldShowCard 
             ? 'translateX(0)' 
-            : 'translateX(-60px)',
-          transition: `all 0.8s ease-out ${animationDelay}s`
+            : isMobile ? 'translateX(0)' : 'translateX(-60px)',
+          transition: isMobile ? 'all 0.3s ease' : `all 0.8s ease-out ${animationDelay}s`
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.transform = `translateX(0) translateY(-8px)`;
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-          e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.3)';
-          const icon = e.currentTarget.querySelector('.service-icon');
-          if (icon) icon.style.transform = 'scale(1.1)';
+          if (!isMobile) {
+            e.currentTarget.style.transform = `translateX(0) translateY(-8px)`;
+            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+            e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+            const icon = e.currentTarget.querySelector('.service-icon');
+            if (icon) icon.style.transform = 'scale(1.1)';
+          }
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.transform = 'translateX(0) translateY(0)';
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-          e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.1)';
-          const icon = e.currentTarget.querySelector('.service-icon');
-          if (icon) icon.style.transform = 'scale(1)';
+          if (!isMobile) {
+            e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+            e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+            const icon = e.currentTarget.querySelector('.service-icon');
+            if (icon) icon.style.transform = 'scale(1)';
+          }
         }}
       >
         <div className="service-icon" style={servicesStyles.serviceIcon}>
           {typeof service.icon === 'string' ? (
-            <span style={{ fontSize: '1.5rem' }}>{service.icon}</span>
+            <span style={{ fontSize: isMobile ? '1.2rem' : '1.5rem' }}>{service.icon}</span>
           ) : (
-            React.cloneElement(service.icon, { size: 28 })
+            React.cloneElement(service.icon, { size: isMobile ? 24 : 28 })
           )}
         </div>
         
