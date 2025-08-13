@@ -941,7 +941,8 @@
 import { CheckCircle, ArrowRight, Play } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import Scene from '../assets/Scene.mp4'
-import Scene3 from '../assets/Scene3.mp4'
+// import Scene3 from '../assets/Scene3.mp4'
+import HomeVideo from '../assets/HomeVideo.mp4';
 
 const Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -1347,7 +1348,7 @@ const Hero = () => {
       <div style={heroStyles.fullscreenVideoContainer}>
         <video
           style={heroStyles.fullscreenVideo}
-          src={Scene3}
+          src={HomeVideo}
           autoPlay
           muted
           loop
