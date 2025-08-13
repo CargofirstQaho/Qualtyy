@@ -402,9 +402,10 @@
 // };
 
 // export default Footer;import React, { useState, useEffect } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import React from 'react';
-import { useState, useEffect } from 'react';
 import { Linkedin } from 'lucide-react';
 import QualtyAILogo from '../assets/QualtyAILogo.png'; // Assuming you have a logo image
 
@@ -470,7 +471,7 @@ const Footer = () => {
       background: '#000000',
       borderTop: '1px solid rgba(40, 40, 40, 0.3)',
       color: '#FFFFFF',
-      padding: isMobile ? '40px 0 30px 0' : '80px 0 60px 0',
+      padding: isMobile ? '25px 0 20px 0' : '80px 0 60px 0',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     footerContent: {
@@ -479,18 +480,18 @@ const Footer = () => {
       padding: isMobile ? '0 1rem' : '0 2rem'
     },
     brandSection: {
-      marginBottom: isMobile ? '30px' : '60px',
+      marginBottom: isMobile ? '20px' : '60px',
       textAlign: isMobile ? 'center' : 'left'
     },
     brandLogo: {
       display: 'inline-flex',
       alignItems: 'center',
-      gap: isMobile ? '8px' : '12px',
+      gap: isMobile ? '6px' : '12px',
       marginBottom: '0'
     },
     logoIcon: {
-      width: isMobile ? '60px' : '80px',
-      height: isMobile ? '60px' : '80px',
+      width: isMobile ? '45px' : '80px',
+      height: isMobile ? '45px' : '80px',
       borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
@@ -507,7 +508,7 @@ const Footer = () => {
       display: 'block'
     },
     logoText: {
-      fontSize: isMobile ? '1.2rem' : '1.5rem',
+      fontSize: isMobile ? '1rem' : '1.5rem',
       fontWeight: '800',
       background: 'linear-gradient(135deg, #FFFFFF, #CCCCCC)',
       WebkitBackgroundClip: 'text',
@@ -522,17 +523,17 @@ const Footer = () => {
     footerGrid: {
       display: 'grid',
       gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
-      gap: isMobile ? '30px 20px' : '80px',
-      marginBottom: isMobile ? '40px' : '80px'
+      gap: isMobile ? '20px 15px' : '80px',
+      marginBottom: isMobile ? '25px' : '80px'
     },
     footerSection: {
       
     },
     sectionTitle: {
       fontWeight: '700',
-      marginBottom: isMobile ? '16px' : '32px',
+      marginBottom: isMobile ? '10px' : '32px',
       color: '#FFFFFF',
-      fontSize: isMobile ? '1rem' : '1.3rem',
+      fontSize: isMobile ? '0.9rem' : '1.3rem',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     sectionList: {
@@ -541,34 +542,34 @@ const Footer = () => {
       margin: 0
     },
     sectionListItem: {
-      marginBottom: isMobile ? '8px' : '16px'
+      marginBottom: isMobile ? '5px' : '16px'
     },
     sectionLink: {
       color: 'rgba(255, 255, 255, 0.7)',
       textDecoration: 'none',
       transition: 'all 0.3s ease',
-      fontSize: isMobile ? '0.85rem' : '1.1rem',
+      fontSize: isMobile ? '0.75rem' : '1.1rem',
       position: 'relative',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
-      lineHeight: isMobile ? '1.3' : '1.5'
+      lineHeight: isMobile ? '1.2' : '1.5'
     },
     footerBottom: {
       borderTop: '1px solid rgba(40, 40, 40, 0.3)',
-      paddingTop: isMobile ? '20px' : '40px',
+      paddingTop: isMobile ? '15px' : '40px',
       textAlign: isMobile ? 'center' : 'left'
     },
     footerBottomText: {
       color: 'rgba(255, 255, 255, 0.5)',
-      fontSize: isMobile ? '0.75rem' : '0.9rem',
+      fontSize: isMobile ? '0.65rem' : '0.9rem',
       fontWeight: '400',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       lineHeight: '1.6',
-      marginBottom: '8px'
+      marginBottom: isMobile ? '5px' : '8px'
     },
     copyright: {
       color: 'rgba(255, 255, 255, 0.5)',
-      fontSize: isMobile ? '0.75rem' : '0.9rem',
+      fontSize: isMobile ? '0.65rem' : '0.9rem',
       fontWeight: '400',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       lineHeight: '1.6'

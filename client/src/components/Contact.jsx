@@ -510,7 +510,7 @@ const Contact = () => {
           <div style={contactStyles.badge}>Get In Touch</div>
           <h2 style={contactStyles.title}>
             Ready to Start Your{' '}
-            <span style={contactStyles.highlight}>
+            <span >
               Quality Inspection
             </span>{' '}
             Journey?
