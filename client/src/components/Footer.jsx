@@ -401,14 +401,16 @@
 //   );
 // };
 
-// export default Footer;
-
-import React from 'react';
+// export default Footer;import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { Linkedin } from 'lucide-react';
 import QualtyAILogo from '../assets/QualtyAILogo.png'; // Assuming you have a logo image
 
 const Footer = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
   const footerSections = [
     {
       title: "Company",
@@ -451,50 +453,61 @@ const Footer = () => {
     }
   ];
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const footerStyles = {
     footer: {
       background: '#000000',
       borderTop: '1px solid rgba(40, 40, 40, 0.3)',
       color: '#FFFFFF',
-      padding: '80px 0 60px 0',
+      padding: isMobile ? '40px 0 30px 0' : '80px 0 60px 0',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     footerContent: {
-      maxWidth: '1400px', // Match hero section container width
+      maxWidth: '1400px',
       margin: '0 auto',
-      padding: '0 2rem' // Match hero section padding exactly
+      padding: isMobile ? '0 1rem' : '0 2rem'
     },
     brandSection: {
-      marginBottom: '60px',
-      textAlign: 'left' // Changed from center to left to align with hero content
+      marginBottom: isMobile ? '30px' : '60px',
+      textAlign: isMobile ? 'center' : 'left'
     },
     brandLogo: {
       display: 'inline-flex',
-      alignItems: 'center', // This centers items vertically
-      gap: '12px',
+      alignItems: 'center',
+      gap: isMobile ? '8px' : '12px',
       marginBottom: '0'
     },
     logoIcon: {
-      width: '80px',
-      height: '80px',
+      width: isMobile ? '60px' : '80px',
+      height: isMobile ? '60px' : '80px',
       borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      // Remove the text-related styles since we're using an image
-      overflow: 'hidden', // Ensure the image fits properly within the container
-      transform: 'translateY(-4px)' // Move logo up slightly to align with text baseline
+      overflow: 'hidden',
+      transform: 'translateY(-4px)'
     },
     logoImage: {
       width: '100%',
       height: '100%',
       borderRadius: '8px',
-      objectFit: 'cover', // Ensure the image scales properly
-      display: 'block' // Remove any inline spacing
+      objectFit: 'cover',
+      display: 'block'
     },
     logoText: {
-      fontSize: '1.5rem',
+      fontSize: isMobile ? '1.2rem' : '1.5rem',
       fontWeight: '800',
       background: 'linear-gradient(135deg, #FFFFFF, #CCCCCC)',
       WebkitBackgroundClip: 'text',
@@ -502,25 +515,24 @@ const Footer = () => {
       backgroundClip: 'text',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
       letterSpacing: '-0.02em',
-      lineHeight: '1.2', // Slightly increased for better alignment
+      lineHeight: '1.2',
       margin: '0',
-      padding: '0',
-      // Remove display: flex and alignItems from here since parent handles alignment
+      padding: '0'
     },
     footerGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: '80px',
-      marginBottom: '80px'
+      gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+      gap: isMobile ? '30px 20px' : '80px',
+      marginBottom: isMobile ? '40px' : '80px'
     },
     footerSection: {
       
     },
     sectionTitle: {
       fontWeight: '700',
-      marginBottom: '32px',
+      marginBottom: isMobile ? '16px' : '32px',
       color: '#FFFFFF',
-      fontSize: '1.3rem',
+      fontSize: isMobile ? '1rem' : '1.3rem',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     sectionList: {
@@ -529,26 +541,26 @@ const Footer = () => {
       margin: 0
     },
     sectionListItem: {
-      marginBottom: '16px'
+      marginBottom: isMobile ? '8px' : '16px'
     },
     sectionLink: {
       color: 'rgba(255, 255, 255, 0.7)',
       textDecoration: 'none',
       transition: 'all 0.3s ease',
-      fontSize: '1.1rem',
+      fontSize: isMobile ? '0.85rem' : '1.1rem',
       position: 'relative',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
-      lineHeight: '1.5'
+      lineHeight: isMobile ? '1.3' : '1.5'
     },
     footerBottom: {
       borderTop: '1px solid rgba(40, 40, 40, 0.3)',
-      paddingTop: '40px',
-      textAlign: 'left' // Changed from center to left to align with hero content
+      paddingTop: isMobile ? '20px' : '40px',
+      textAlign: isMobile ? 'center' : 'left'
     },
     footerBottomText: {
       color: 'rgba(255, 255, 255, 0.5)',
-      fontSize: '0.9rem',
+      fontSize: isMobile ? '0.75rem' : '0.9rem',
       fontWeight: '400',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       lineHeight: '1.6',
@@ -556,47 +568,20 @@ const Footer = () => {
     },
     copyright: {
       color: 'rgba(255, 255, 255, 0.5)',
-      fontSize: '0.9rem',
+      fontSize: isMobile ? '0.75rem' : '0.9rem',
       fontWeight: '400',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       lineHeight: '1.6'
-    },
-    // Responsive styles
-    '@media (max-width: 768px)': {
-      footerGrid: {
-        gridTemplateColumns: '1fr',
-        gap: '40px'
-      },
-      brandSection: {
-        marginBottom: '40px'
-      }
     }
   };
 
-  // Add Google Fonts import and responsive styles
+  // Add Google Fonts import
   React.useEffect(() => {
     if (!document.querySelector('#footer-styles')) {
       const style = document.createElement('style');
       style.id = 'footer-styles';
       style.textContent = `
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
-        
-        @media (max-width: 768px) {
-          .footer-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-          .footer-brand-section {
-            margin-bottom: 40px !important;
-            text-align: center !important;
-          }
-          .footer-bottom {
-            text-align: center !important;
-          }
-          .footer-content {
-            padding: 0 1rem !important;
-          }
-        }
       `;
       document.head.appendChild(style);
     }
@@ -604,8 +589,8 @@ const Footer = () => {
 
   return (
     <footer style={footerStyles.footer}>
-      <div style={footerStyles.footerContent} className="footer-content">
-        <div style={footerStyles.brandSection} className="footer-brand-section">
+      <div style={footerStyles.footerContent}>
+        <div style={footerStyles.brandSection}>
           <div style={footerStyles.brandLogo}>
             <div style={footerStyles.logoIcon}>
               <img 
@@ -618,7 +603,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div style={footerStyles.footerGrid} className="footer-grid">
+        <div style={footerStyles.footerGrid}>
           {footerSections.map((section, index) => (
             <div key={index} style={footerStyles.footerSection}>
               <h4 style={footerStyles.sectionTitle}>{section.title}</h4>
@@ -629,12 +614,16 @@ const Footer = () => {
                       href="#" 
                       style={footerStyles.sectionLink}
                       onMouseOver={(e) => {
-                        e.target.style.color = '#CCCCCC';
-                        e.target.style.transform = 'translateX(5px)';
+                        if (!isMobile) {
+                          e.target.style.color = '#CCCCCC';
+                          e.target.style.transform = 'translateX(5px)';
+                        }
                       }}
                       onMouseOut={(e) => {
-                        e.target.style.color = 'rgba(255, 255, 255, 0.7)';
-                        e.target.style.transform = 'translateX(0)';
+                        if (!isMobile) {
+                          e.target.style.color = 'rgba(255, 255, 255, 0.7)';
+                          e.target.style.transform = 'translateX(0)';
+                        }
                       }}
                     >
                       {link}
@@ -646,7 +635,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <div style={footerStyles.footerBottom} className="footer-bottom">
+        <div style={footerStyles.footerBottom}>
           <p style={footerStyles.footerBottomText}>
             * As on December 31, 2024
           </p>

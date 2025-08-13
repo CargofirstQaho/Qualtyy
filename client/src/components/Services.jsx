@@ -1458,8 +1458,6 @@
 // };
 
 // export default Services;
-
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Leaf, BarChart3, Shield, Zap, Package, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -1930,17 +1928,20 @@ const Services = () => {
     },
     ctaSection: {
       textAlign: 'center',
-      marginTop: '4rem'
+      marginTop: '4rem',
+      padding: isMobile ? '0 1rem' : '0'
     },
     ctaCard: {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
-      padding: '3rem',
-      borderRadius: '25px',
-      border: '1px solid rgba(255, 255, 255, 0.1)'
+      padding: isMobile ? '2rem 1.5rem' : '3rem',
+      borderRadius: isMobile ? '20px' : '25px',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      maxWidth: isMobile ? '320px' : 'none',
+      margin: isMobile ? '0 auto' : '0'
     },
     ctaTitle: {
-      fontSize: isMobile ? '2rem' : '3rem',
+      fontSize: isMobile ? '1.6rem' : '3rem',
       fontWeight: '800',
       marginBottom: '1rem',
       color: '#FFFFFF',
@@ -1948,10 +1949,10 @@ const Services = () => {
       letterSpacing: '-0.02em'
     },
     ctaDescription: {
-      fontSize: isMobile ? '1.1rem' : '1.3rem',
+      fontSize: isMobile ? '0.9rem' : '1.3rem',
       color: 'rgba(255, 255, 255, 0.7)',
-      marginBottom: '2rem',
-      maxWidth: '600px',
+      marginBottom: isMobile ? '1.5rem' : '2rem',
+      maxWidth: isMobile ? '280px' : '600px',
       marginLeft: 'auto',
       marginRight: 'auto',
       fontWeight: '500',
@@ -1960,10 +1961,10 @@ const Services = () => {
     ctaButton: {
       background: 'rgba(255, 255, 255, 0.1)',
       color: '#FFFFFF',
-      padding: '1.3rem 3rem',
+      padding: isMobile ? '1rem 2rem' : '1.3rem 3rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '30px',
-      fontSize: '1.2rem',
+      borderRadius: isMobile ? '25px' : '30px',
+      fontSize: isMobile ? '1rem' : '1.2rem',
       fontWeight: '700',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
@@ -2185,7 +2186,7 @@ const Services = () => {
             >
               <div style={servicesStyles.featuredLeftColumn}>
                 <div className="service-icon" style={servicesStyles.featuredServiceIcon}>
-                  {React.cloneElement(service.icon, { size: 32 })}
+                  {React.cloneElement(service.icon, { size: isMobile ? 28 : 32 })}
                 </div>
                 
                 <h3 style={servicesStyles.featuredServiceTitle}>{service.title}</h3>

@@ -166,6 +166,8 @@
 //   );
 // };
 // export default Contact;import React, { useState } from "react";
+
+
 import React, { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 
@@ -181,6 +183,7 @@ const Contact = () => {
     additionalDetails: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -192,27 +195,39 @@ const Contact = () => {
     setTimeout(() => setIsSubmitted(false), 3000);
   };
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const contactInfo = [
     {
-      icon: <Phone size={24} />, 
+      icon: <Phone size={isMobile ? 20 : 24} />, 
       title: "Phone",
       details: ["+91 903 546 2042"],
       description: "Call us for immediate assistance"
     },
     {
-      icon: <Mail size={24} />, 
+      icon: <Mail size={isMobile ? 20 : 24} />, 
       title: "Email",
       details: ["support@quality.ai"],
       description: "Send us your questions anytime"
     },
     {
-      icon: <MapPin size={24} />, 
+      icon: <MapPin size={isMobile ? 20 : 24} />, 
       title: "Office",
       details: ["WeWork-Vaishnavi Signature", "Bellandur, Bangalore, 560103"],
       description: "Visit our main office"
     },
     {
-      icon: <Clock size={24} />, 
+      icon: <Clock size={isMobile ? 20 : 24} />, 
       title: "Hours",
       details: ["24/7 Support"],
       description: "We're here to help"
@@ -221,7 +236,7 @@ const Contact = () => {
 
   const contactStyles = {
     contact: {
-      padding: '6rem 2rem',
+      padding: isMobile ? '4rem 1rem' : '6rem 2rem',
       background: '#000000',
       position: 'relative',
       overflow: 'hidden',
@@ -244,24 +259,24 @@ const Contact = () => {
     },
     sectionHeader: {
       textAlign: 'center',
-      marginBottom: '4rem'
+      marginBottom: isMobile ? '3rem' : '4rem'
     },
     badge: {
       display: 'inline-flex',
       alignItems: 'center',
       background: 'rgba(255, 255, 255, 0.1)',
       color: '#FFFFFF',
-      padding: '1rem 2rem',
+      padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
       borderRadius: '25px',
       fontWeight: '700',
-      fontSize: '1.2rem',
+      fontSize: isMobile ? '1rem' : '1.2rem',
       marginBottom: '2rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       backdropFilter: 'blur(10px)',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     title: {
-      fontSize: '5rem',
+      fontSize: isMobile ? '2.2rem' : '5rem',
       fontWeight: '900',
       marginBottom: '2rem',
       color: '#FFFFFF',
@@ -276,7 +291,7 @@ const Contact = () => {
       backgroundClip: 'text'
     },
     description: {
-      fontSize: '1.4rem',
+      fontSize: isMobile ? '1rem' : '1.4rem',
       color: 'rgba(255, 255, 255, 0.8)',
       maxWidth: '800px',
       margin: '0 auto',
@@ -285,26 +300,27 @@ const Contact = () => {
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     contactGrid: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 2fr',
-      gap: '3rem',
+      display: isMobile ? 'flex' : 'grid',
+      flexDirection: isMobile ? 'column' : 'unset',
+      gridTemplateColumns: isMobile ? 'unset' : '1fr 2fr',
+      gap: isMobile ? '2rem' : '3rem',
       marginTop: '4rem',
       alignItems: 'stretch'
     },
     contactInfo: {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
-      padding: '3rem',
-      borderRadius: '25px',
+      padding: isMobile ? '2rem 1.5rem' : '3rem',
+      borderRadius: isMobile ? '20px' : '25px',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between'
     },
     infoTitle: {
-      fontSize: '2.5rem',
+      fontSize: isMobile ? '1.8rem' : '2.5rem',
       fontWeight: '800',
-      marginBottom: '2.5rem',
+      marginBottom: isMobile ? '1.5rem' : '2.5rem',
       color: '#FFFFFF',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
       letterSpacing: '-0.02em'
@@ -312,16 +328,16 @@ const Contact = () => {
     contactItem: {
       display: 'flex',
       alignItems: 'flex-start',
-      gap: '1.5rem',
-      marginBottom: '2.5rem',
+      gap: isMobile ? '1rem' : '1.5rem',
+      marginBottom: isMobile ? '1.5rem' : '2.5rem',
       transition: 'all 0.3s ease',
       cursor: 'pointer'
     },
     contactIcon: {
-      width: '60px',
-      height: '60px',
+      width: isMobile ? '45px' : '60px',
+      height: isMobile ? '45px' : '60px',
       background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '15px',
+      borderRadius: isMobile ? '12px' : '15px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -337,12 +353,12 @@ const Contact = () => {
       fontWeight: '700',
       marginBottom: '0.5rem',
       color: '#FFFFFF',
-      fontSize: '1.3rem',
+      fontSize: isMobile ? '1.1rem' : '1.3rem',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
     },
     contactText: {
       color: 'rgba(255, 255, 255, 0.8)',
-      fontSize: '1.1rem',
+      fontSize: isMobile ? '0.9rem' : '1.1rem',
       lineHeight: '1.4',
       marginBottom: '0.5rem',
       fontWeight: '500',
@@ -350,68 +366,68 @@ const Contact = () => {
     },
     contactDescription: {
       color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '1rem',
+      fontSize: isMobile ? '0.8rem' : '1rem',
       fontWeight: '500',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     contactForm: {
       background: 'rgba(255, 255, 255, 0.05)',
       backdropFilter: 'blur(10px)',
-      padding: '3rem',
-      borderRadius: '25px',
+      padding: isMobile ? '2rem 1.5rem' : '3rem',
+      borderRadius: isMobile ? '20px' : '25px',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       display: 'flex',
       flexDirection: 'column'
     },
     formTitle: {
-      fontSize: '2.5rem',
+      fontSize: isMobile ? '1.8rem' : '2.5rem',
       fontWeight: '800',
-      marginBottom: '2.5rem',
+      marginBottom: isMobile ? '1.5rem' : '2.5rem',
       color: '#FFFFFF',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
       letterSpacing: '-0.02em'
     },
     formGroup: {
-      marginBottom: '1.5rem'
+      marginBottom: isMobile ? '1.2rem' : '1.5rem'
     },
     formRow: {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '1.5rem'
+      gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr',
+      gap: isMobile ? '0.8rem' : '1.5rem'
     },
     label: {
       display: 'block',
       fontWeight: '700',
-      marginBottom: '0.75rem',
+      marginBottom: isMobile ? '0.5rem' : '0.75rem',
       color: '#FFFFFF',
-      fontSize: '1.1rem',
+      fontSize: isMobile ? '0.8rem' : '1.1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
     input: {
       width: '100%',
-      padding: '0.75rem 1.25rem',
+      padding: isMobile ? '0.5rem 0.8rem' : '0.75rem 1.25rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '12px',
-      fontSize: '1.1rem',
+      borderRadius: isMobile ? '8px' : '12px',
+      fontSize: isMobile ? '0.8rem' : '1.1rem',
       transition: 'all 0.3s ease',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
-      height: '52px',
+      height: isMobile ? '40px' : '52px',
       boxSizing: 'border-box',
       fontWeight: '500'
     },
     select: {
       width: '100%',
-      padding: '0.75rem 1.25rem',
+      padding: isMobile ? '0.5rem 0.8rem' : '0.75rem 1.25rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '12px',
-      fontSize: '1.1rem',
+      borderRadius: isMobile ? '8px' : '12px',
+      fontSize: isMobile ? '0.8rem' : '1.1rem',
       transition: 'all 0.3s ease',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
-      height: '52px',
+      height: isMobile ? '40px' : '52px',
       boxSizing: 'border-box',
       cursor: 'pointer',
       appearance: 'none',
@@ -419,19 +435,19 @@ const Contact = () => {
       backgroundPosition: 'right 1rem center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '1rem',
-      paddingRight: '3rem',
+      paddingRight: isMobile ? '2.5rem' : '3rem',
       fontWeight: '500'
     },
     textarea: {
       width: '100%',
-      padding: '1rem 1.25rem',
+      padding: isMobile ? '0.8rem 1rem' : '1rem 1.25rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '12px',
-      fontSize: '1.1rem',
+      borderRadius: isMobile ? '10px' : '12px',
+      fontSize: isMobile ? '0.9rem' : '1.1rem',
       transition: 'all 0.3s ease',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       resize: 'vertical',
-      minHeight: '120px',
+      minHeight: isMobile ? '100px' : '120px',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
       boxSizing: 'border-box',
@@ -440,10 +456,10 @@ const Contact = () => {
     submitBtn: {
       background: 'rgba(255, 255, 255, 0.1)',
       color: '#FFFFFF',
-      padding: '1.3rem 3rem',
+      padding: isMobile ? '1rem 2rem' : '1.3rem 3rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '30px',
-      fontSize: '1.2rem',
+      borderRadius: isMobile ? '25px' : '30px',
+      fontSize: isMobile ? '1rem' : '1.2rem',
       fontWeight: '700',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
@@ -494,7 +510,7 @@ const Contact = () => {
           <div style={contactStyles.badge}>Get In Touch</div>
           <h2 style={contactStyles.title}>
             Ready to Start Your{' '}
-            <span >
+            <span style={contactStyles.highlight}>
               Quality Inspection
             </span>{' '}
             Journey?
@@ -515,19 +531,23 @@ const Contact = () => {
                     key={index} 
                     style={contactStyles.contactItem}
                     onMouseOver={(e) => {
-                      const icon = e.currentTarget.querySelector('.contact-icon');
-                      if (icon) {
-                        icon.style.transform = 'scale(1.1)';
-                        icon.style.background = 'rgba(255, 255, 255, 0.15)';
-                        icon.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+                      if (!isMobile) {
+                        const icon = e.currentTarget.querySelector('.contact-icon');
+                        if (icon) {
+                          icon.style.transform = 'scale(1.1)';
+                          icon.style.background = 'rgba(255, 255, 255, 0.15)';
+                          icon.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+                        }
                       }
                     }}
                     onMouseOut={(e) => {
-                      const icon = e.currentTarget.querySelector('.contact-icon');
-                      if (icon) {
-                        icon.style.transform = 'scale(1)';
-                        icon.style.background = 'rgba(255, 255, 255, 0.1)';
-                        icon.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                      if (!isMobile) {
+                        const icon = e.currentTarget.querySelector('.contact-icon');
+                        if (icon) {
+                          icon.style.transform = 'scale(1)';
+                          icon.style.background = 'rgba(255, 255, 255, 0.1)';
+                          icon.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                        }
                       }
                     }}
                   >
@@ -694,14 +714,14 @@ const Contact = () => {
                   background: isSubmitted ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseOver={(e) => {
-                  if (!isSubmitted) {
+                  if (!isSubmitted && !isMobile) {
                     e.target.style.transform = 'translateY(-2px)';
                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
                     e.target.style.border = '1px solid rgba(255, 255, 255, 0.3)';
                   }
                 }}
                 onMouseOut={(e) => {
-                  if (!isSubmitted) {
+                  if (!isSubmitted && !isMobile) {
                     e.target.style.transform = 'translateY(0)';
                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
                     e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)';
@@ -710,12 +730,12 @@ const Contact = () => {
               >
                 {isSubmitted ? (
                   <>
-                    <CheckCircle size={20} /> 
+                    <CheckCircle size={isMobile ? 18 : 20} /> 
                     <span>Message Sent!</span>
                   </>
                 ) : (
                   <>
-                    <Send size={20} /> 
+                    <Send size={isMobile ? 18 : 20} /> 
                     <span>Send Message</span>
                   </>
                 )}

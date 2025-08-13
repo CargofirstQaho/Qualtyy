@@ -157,7 +157,7 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       zIndex: 1000,
       background: 'transparent',
       backdropFilter: 'blur(10px)',
-      padding: '0.75rem 0',
+      padding: '1rem 0',
       transition: 'all 0.3s ease',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     },
@@ -168,22 +168,22 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      minHeight: '60px',
+      minHeight: '70px',
       position: 'relative'
     },
     logo: {
       display: 'flex',
       alignItems: 'center',
-      gap: '0.75rem',
-      height: '60px',
-      flexShrink: 0, // Prevent logo from shrinking
+      gap: '1rem',
+      height: '70px',
+      flexShrink: 0,
       zIndex: 10
     },
     logoIcon: {
-      width: '50px', // Slightly smaller to prevent collisions
-      height: '50px',
-      background: 'none', // Completely remove background
-      backgroundColor: 'transparent', // Ensure no background color
+      width: '60px',
+      height: '60px',
+      background: 'none',
+      backgroundColor: 'transparent',
       borderRadius: '10px',
       display: 'flex',
       alignItems: 'center',
@@ -194,18 +194,18 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
       overflow: 'hidden',
       flexShrink: 0,
-      border: 'none', // Remove any potential border
-      boxShadow: 'none' // Remove any potential shadow
+      border: 'none',
+      boxShadow: 'none'
     },
     logoImage: {
       width: '100%',
       height: '100%',
       objectFit: 'contain',
       display: 'block',
-      backgroundColor: 'transparent' // Ensure no background color
+      backgroundColor: 'transparent'
     },
     logoText: {
-      fontSize: '1.4rem', // Slightly smaller
+      fontSize: '1.8rem',
       fontWeight: '800',
       background: 'white',
       WebkitBackgroundClip: 'text',
@@ -217,14 +217,14 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       display: 'flex',
       alignItems: 'center',
       margin: '0',
-      whiteSpace: 'nowrap', // Prevent text wrapping
+      whiteSpace: 'nowrap',
       flexShrink: 0
     },
     nav: {
       display: 'flex',
-      gap: '1.5rem', // Reduced gap to prevent collisions
+      gap: '2rem',
       alignItems: 'center',
-      flexShrink: 0 // Prevent nav from shrinking
+      flexShrink: 0
     },
     navLink: {
       color: '#FFFFFF',
@@ -232,15 +232,15 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       fontWeight: '600',
       position: 'relative',
       transition: 'all 0.3s ease',
-      padding: '0.75rem 0.5rem', // Add horizontal padding
-      fontSize: '0.95rem', // Slightly smaller
+      padding: '1rem 0.75rem',
+      fontSize: '1.1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       whiteSpace: 'nowrap'
     },
     ctaButton: {
       background: 'rgba(255, 255, 255, 0.1)',
       color: 'white',
-      padding: '0.6rem 1.2rem', // Slightly smaller padding
+      padding: '0.8rem 1.6rem',
       borderRadius: '20px',
       textDecoration: 'none',
       fontWeight: '700',
@@ -248,26 +248,26 @@ const Header = ({ user, onLogout, onAuthClick }) => {
       border: '1px solid rgba(255, 255, 255, 0.2)',
       cursor: 'pointer',
       backdropFilter: 'blur(10px)',
-      fontSize: '0.9rem',
+      fontSize: '1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
-      marginLeft: '0.75rem',
+      marginLeft: '1rem',
       whiteSpace: 'nowrap',
       flexShrink: 0
     },
     logoutButton: {
       background: 'rgba(255, 255, 255, 0.1)',
       color: 'white',
-      padding: '0.6rem 1rem', // Smaller padding
+      padding: '0.8rem 1.4rem',
       borderRadius: '20px',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       fontWeight: '700',
       cursor: 'pointer',
       display: 'flex',
       alignItems: 'center',
-      gap: '0.4rem',
+      gap: '0.5rem',
       transition: 'all 0.3s ease',
       backdropFilter: 'blur(10px)',
-      fontSize: '0.9rem',
+      fontSize: '1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       whiteSpace: 'nowrap',
       flexShrink: 0
@@ -275,19 +275,19 @@ const Header = ({ user, onLogout, onAuthClick }) => {
     userWelcome: {
       color: 'rgba(255, 255, 255, 0.8)',
       fontWeight: '600',
-      marginRight: '0.75rem',
-      fontSize: '0.9rem',
+      marginRight: '1rem',
+      fontSize: '1rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       whiteSpace: 'nowrap',
       flexShrink: 0,
-      maxWidth: '150px', // Limit welcome text width
+      maxWidth: '150px',
       overflow: 'hidden',
       textOverflow: 'ellipsis'
     },
     userContainer: {
       display: 'flex',
       alignItems: 'center',
-      marginLeft: '0.75rem',
+      marginLeft: '1rem',
       flexShrink: 0
     },
     mobileMenuButton: {
@@ -368,8 +368,8 @@ const Header = ({ user, onLogout, onAuthClick }) => {
         style={{
           position: 'absolute',
           bottom: '-5px',
-          left: '0.5rem',
-          right: '0.5rem',
+          left: '0.75rem',
+          right: '0.75rem',
           height: '2px',
           background: 'linear-gradient(135deg, #FFFFFF, #CCCCCC)',
           transform: 'scaleX(0)',
@@ -478,7 +478,7 @@ const Header = ({ user, onLogout, onAuthClick }) => {
                   e.target.style.background = 'rgba(255, 255, 255, 0.1)';
                 }}
               >
-                <LogOut size={14} />
+                <LogOut size={16} />
                 Logout
               </button>
             </div>
