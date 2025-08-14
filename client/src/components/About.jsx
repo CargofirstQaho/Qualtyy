@@ -944,7 +944,7 @@ const About = () => {
           )}
           
           <p style={aboutStyles.description}>
-            Quality.AI is a revolutionary B2B marketplace connecting global traders with certified inspection firms and freelancers. 
+            Qualty.AI is a revolutionary B2B marketplace connecting global traders with certified inspection firms and freelancers. 
             We eliminate the hassle of traditional communication methods by providing a centralized platform where 
             you can create inspection demands and receive multiple competitive quotes.
           </p>

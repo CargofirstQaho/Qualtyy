@@ -516,7 +516,7 @@ const Contact = () => {
             Journey?
           </h2>
           <p style={contactStyles.description}>
-            Contact our experts today to discuss your quality inspection needs and discover how Quality.AI 
+            Contact our experts today to discuss your quality inspection needs and discover how Qualty.AI 
             can connect you with the best global inspectors for your cargo.
           </p>
         </div>
