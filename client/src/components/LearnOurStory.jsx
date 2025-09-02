@@ -1,7 +1,7 @@
-const LearnOurStory=()=>{
-    return(
-        <div>Learn Our Story Page</div>  
-    )
-}
+// const LearnOurStory=()=>{
+//     return(
+//         <div>Learn Our Story Page</div>
+//     )
+// }
 
-export default LearnOurStory;
+// export default LearnOurStory;

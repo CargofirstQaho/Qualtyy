@@ -7,7 +7,7 @@ import Services from "./Services";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import About from "./About";
-import LearnOurStory from "./LearnOurStory";
+// import LearnOurStory from "./LearnOurStory";
 
 const LandingPage = () => {
   const { user, logout } = useAuth();
@@ -46,7 +46,7 @@ const LandingPage = () => {
       <Hero />
       <Services />
       <About />
-      <LearnOurStory />
+      {/* <LearnOurStory /> */}
       <Contact />
       <Footer />
     </div>

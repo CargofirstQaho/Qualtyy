@@ -76,7 +76,8 @@ const BiddingRoom = ({ onNavigateToActiveInspections }) => {
           lowestBid: item.lowest_bid_usd,
           submittedAt: item.createdAt,
           urgency: item.urgencyLevel,
-          volume: item.volume, // volume at the main object level
+          volume: item.volume,
+          siUnit: item.siUnit, // volume at the main object level
           location: item.inspectionLocation, // add location here if API provides it
           bids: [
             {
