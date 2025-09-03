@@ -1,175 +1,10 @@
 
-// import React, { useState } from "react";
-// import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
-// const Contact = () => {
-//   const [formData, setFormData] = useState({
-//     name: '', 
-//     email: '', 
-//     phone: '', 
-//     company: '', 
-//     service: '', 
-//     message: ''
-//   });
-//   const [isSubmitted, setIsSubmitted] = useState(false);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     setIsSubmitted(true);
-//     setTimeout(() => setIsSubmitted(false), 3000);
-//   };
-
-//   const contactInfo = [
-//     {
-//       icon: <Phone className="h-6 w-6" />, 
-//       title: "Phone",
-//       details: ["+91 807 360 2055"],
-//       description: "Call us for immediate assistance"
-//     },
-//     {
-//       icon: <Mail className="h-6 w-6" />, 
-//       title: "Email",
-//       details: ["support@quality.ai"],
-//       description: "Send us your questions anytime"
-//     },
-//     {
-//       icon: <MapPin className="h-6 w-6" />, 
-//       title: "Office",
-//       details: ["WeWork-Vaishnavi Signatures", "Bellandur, Bangalore, 560103"],
-//       description: "Visit our main office"
-//     },
-//     {
-//       icon: <Clock className="h-6 w-6" />, 
-//       title: "Hours",
-//       details: ["Mon - Sat: 10:00 AM - 6:30 PM"],
-//       description: "We're here to help"
-//     }
-//   ];
-
-//   return (
-//     <section id="contact" className="py-20 bg-white">
-//       <div className="w-full px-6 lg:px-12 xl:px-16">
-//         <div className="text-center mb-16">
-//           <div className="inline-flex items-center bg-gray-100 rounded-full px-4 py-2 mb-6 border border-gray-200">
-//             <span className="text-gray-700 text-sm font-medium">Get In Touch</span>
-//           </div>
-//           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-//             Ready to Start Your <span className="relative">
-//               <span className="text-gray-900">Quality Inspection</span>
-//               <div className="absolute -bottom-2 left-0 w-full h-3 bg-yellow-200 -z-10 transform rotate-1"></div>
-//             </span> Journey?
-//           </h2>
-//           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-//             Contact our experts today to discuss your quality inspection needs and discover how Quality.AI 
-//             can connect you with the best global inspectors for your cargo.
-//           </p>
-//         </div>
-
-//         <div className="grid lg:grid-cols-3 gap-12">
-//           <div className="lg:col-span-1">
-//             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-//               <h3 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
-//               <div className="space-y-6">
-//                 {contactInfo.map((info, index) => (
-//                   <div key={index} className="flex items-start space-x-4 group">
-//                     <div className="text-gray-600 mt-1 group-hover:text-gray-900 transition-colors duration-200">{info.icon}</div>
-//                     <div>
-//                       <h4 className="font-semibold text-gray-800 mb-1">{info.title}</h4>
-//                       {info.details.map((detail, idx) => (
-//                         <p key={idx} className="text-gray-600 text-sm">{detail}</p>
-//                       ))}
-//                       <p className="text-gray-400 text-xs mt-1">{info.description}</p>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-
-//           <div className="lg:col-span-2">
-//             <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-//               <h3 className="text-2xl font-bold text-gray-900 mb-8">Send Us a Message</h3>
-//               <form onSubmit={handleSubmit} className="space-y-6">
-//                 <div className="grid md:grid-cols-2 gap-6">
-//                   <div>
-//                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-//                       Full Name *
-//                     </label>
-//                     <input 
-//                       type="text" 
-//                       id="name" 
-//                       name="name" 
-//                       value={formData.name} 
-//                       onChange={handleChange} 
-//                       required
-//                       className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-400"
-//                       placeholder="Your full name"
-//                     />
-//                   </div>
-//                   <div>
-//                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-//                       Email Address *
-//                     </label>
-//                     <input 
-//                       type="email" 
-//                       id="email" 
-//                       name="email" 
-//                       value={formData.email} 
-//                       onChange={handleChange} 
-//                       required
-//                       className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-400"
-//                       placeholder="your@email.com"
-//                     />
-//                   </div>
-//                 </div>
-
-//                 <div>
-//                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-//                   <textarea 
-//                     id="message" 
-//                     name="message" 
-//                     value={formData.message} 
-//                     onChange={handleChange} 
-//                     required 
-//                     rows={6}
-//                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-400 focus:border-transparent resize-none text-gray-900 placeholder-gray-400 transition-all duration-200"
-//                     placeholder="Tell us about your quality inspection needs and requirements..."
-//                   />
-//                 </div>
-
-//                 <button 
-//                   type="submit" 
-//                   disabled={isSubmitted}
-//                   className="w-full bg-gray-900 text-white py-4 rounded-lg hover:bg-gray-800 transition-all duration-200 font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 transform hover:scale-105"
-//                 >
-//                   {isSubmitted ? (
-//                     <>
-//                       <CheckCircle className="h-5 w-5" /> 
-//                       <span>Message Sent!</span>
-//                     </>
-//                   ) : (
-//                     <>
-//                       <Send className="h-5 w-5" /> 
-//                       <span>Send Message</span>
-//                     </>
-//                   )}
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-// export default Contact;import React, { useState } from "react";
-
 
 import React, { useState, useEffect } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { ref, push, serverTimestamp } from 'firebase/database';
+import { database } from '../firebase';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -183,16 +18,105 @@ const Contact = () => {
     additionalDetails: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [isMobile, setIsMobile] = useState(false);
+
+  // EmailJS configuration
+  const EMAILJS_SERVICE_ID = 'service_pmnphec'; // Replace with your Service ID
+  const EMAILJS_TEMPLATE_ID = 'template_mqg34mf'; // Replace with your Template ID  
+  const EMAILJS_PUBLIC_KEY = 'jfKxPTHc-oDZPweGA'; // Replace with your Public Key
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (submitError) setSubmitError('');
   };
 
-  const handleSubmit = (e) => {
+  const sendEmailNotification = async (submissionData) => {
+    try {
+      const emailParams = {
+        from_name: submissionData.name,
+        from_email: submissionData.email,
+        phone: submissionData.phone,
+        company: submissionData.company,
+        company_name: submissionData.company, // For email subject
+        location: submissionData.location,
+        user_type: submissionData.userType,
+        message: submissionData.message,
+        additional_details: submissionData.additionalDetails || 'None provided',
+        submitted_date: new Date().toLocaleString(),
+        to_email: 'support@qualty.ai' // This should match your template
+      };
+
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        emailParams
+      );
+
+      console.log('Email sent successfully:', result.text);
+      return { success: true };
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      return { success: false, error: error.text };
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsLoading(true);
+    setSubmitError('');
+
+    try {
+      // 1. Save to Firebase Realtime Database
+      const contactRef = ref(database, 'contact_submissions');
+      const firebaseResult = await push(contactRef, {
+        ...formData,
+        submittedAt: serverTimestamp(),
+        status: 'new',
+        emailSent: false // We'll update this after email is sent
+      });
+
+      console.log('Data saved to Firebase:', firebaseResult.key);
+
+      // 2. Send email notification
+      const emailResult = await sendEmailNotification(formData);
+      
+      if (emailResult.success) {
+        // Update Firebase record to mark email as sent
+        await push(ref(database, `contact_submissions/${firebaseResult.key}/emailSent`), true);
+        console.log('Email notification sent successfully');
+      } else {
+        console.warn('Email notification failed, but form was saved');
+        // Don't fail the entire process if email fails
+      }
+
+      // 3. Reset form and show success
+      setFormData({
+        name: '', 
+        email: '', 
+        phone: '', 
+        company: '', 
+        location: '',
+        userType: '',
+        message: '',
+        additionalDetails: ''
+      });
+
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 5000);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Failed to submit form. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Mobile detection
@@ -217,7 +141,7 @@ const Contact = () => {
     {
       icon: <Mail size={isMobile ? 20 : 24} />, 
       title: "Email",
-      details: ["support@quality.ai"],
+      details: ["support@qualty.ai"],
       description: "Send us your questions anytime"
     },
     {
@@ -283,12 +207,6 @@ const Contact = () => {
       lineHeight: '1.1',
       fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
       letterSpacing: '-0.03em'
-    },
-    highlight: {
-      background: 'linear-gradient(135deg, #6C5CE7, #FF6B35)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text'
     },
     description: {
       fontSize: isMobile ? '1rem' : '1.4rem',
@@ -454,14 +372,14 @@ const Contact = () => {
       fontWeight: '500'
     },
     submitBtn: {
-      background: 'rgba(255, 255, 255, 0.1)',
+      background: isLoading ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)',
       color: '#FFFFFF',
       padding: isMobile ? '1rem 2rem' : '1.3rem 3rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       borderRadius: isMobile ? '25px' : '30px',
       fontSize: isMobile ? '1rem' : '1.2rem',
       fontWeight: '700',
-      cursor: 'pointer',
+      cursor: isLoading ? 'not-allowed' : 'pointer',
       transition: 'all 0.3s ease',
       width: '100%',
       display: 'flex',
@@ -469,6 +387,33 @@ const Contact = () => {
       justifyContent: 'center',
       gap: '0.75rem',
       backdropFilter: 'blur(10px)',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+      opacity: isLoading ? 0.7 : 1
+    },
+    errorMessage: {
+      color: '#ff6b6b',
+      fontSize: isMobile ? '0.8rem' : '1rem',
+      marginBottom: '1rem',
+      padding: '0.75rem 1rem',
+      background: 'rgba(255, 107, 107, 0.1)',
+      border: '1px solid rgba(255, 107, 107, 0.3)',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
+    },
+    successMessage: {
+      color: '#51cf66',
+      fontSize: isMobile ? '0.8rem' : '1rem',
+      marginBottom: '1rem',
+      padding: '0.75rem 1rem',
+      background: 'rgba(81, 207, 102, 0.1)',
+      border: '1px solid rgba(81, 207, 102, 0.3)',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
       fontFamily: '"Gilroy", "Poppins", "Inter", -apple-system, BlinkMacSystemFont, sans-serif'
     }
   };
@@ -482,6 +427,11 @@ const Contact = () => {
         @keyframes pulse {
           0%, 100% { transform: scale(1) rotate(0deg); }
           50% { transform: scale(1.1) rotate(180deg); }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
       `;
       const style = document.createElement('style');
@@ -509,14 +459,10 @@ const Contact = () => {
         <div style={contactStyles.sectionHeader}>
           <div style={contactStyles.badge}>Get In Touch</div>
           <h2 style={contactStyles.title}>
-            Ready to Start Your{' '}
-            <span >
-              Quality Inspection
-            </span>{' '}
-            Journey?
+            Ready to Start Your Quality Inspection Journey?
           </h2>
           <p style={contactStyles.description}>
-            Contact our experts today to discuss your quality inspection needs and discover how Qualty.AI 
+            Contact our experts today to discuss your quality inspection needs and discover how Quality.AI 
             can connect you with the best global inspectors for your cargo.
           </p>
         </div>
@@ -569,12 +515,25 @@ const Contact = () => {
 
           <div style={contactStyles.contactForm}>
             <h3 style={contactStyles.formTitle}>Send Us a Message</h3>
-            <div>
+            
+            {isSubmitted && (
+              <div style={contactStyles.successMessage}>
+                <CheckCircle size={18} />
+                <span>Thank you! Your message has been submitted and our team has been notified.</span>
+              </div>
+            )}
+
+            {submitError && (
+              <div style={contactStyles.errorMessage}>
+                <AlertCircle size={18} />
+                <span>{submitError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit}>
               <div style={contactStyles.formRow}>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="name" style={contactStyles.label}>
-                    Full Name *
-                  </label>
+                  <label htmlFor="name" style={contactStyles.label}>Full Name *</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -582,16 +541,19 @@ const Contact = () => {
                     value={formData.name} 
                     onChange={handleChange} 
                     required
-                    style={contactStyles.input}
+                    disabled={isLoading}
+                    style={{
+                      ...contactStyles.input,
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'text'
+                    }}
                     placeholder="Your full name"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="email" style={contactStyles.label}>
-                    Email Address *
-                  </label>
+                  <label htmlFor="email" style={contactStyles.label}>Email Address *</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -599,7 +561,12 @@ const Contact = () => {
                     value={formData.email} 
                     onChange={handleChange} 
                     required
-                    style={contactStyles.input}
+                    disabled={isLoading}
+                    style={{
+                      ...contactStyles.input,
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'text'
+                    }}
                     placeholder="your@email.com"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -609,9 +576,7 @@ const Contact = () => {
 
               <div style={contactStyles.formRow}>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="phone" style={contactStyles.label}>
-                    Contact Number *
-                  </label>
+                  <label htmlFor="phone" style={contactStyles.label}>Contact Number *</label>
                   <input 
                     type="tel" 
                     id="phone" 
@@ -619,16 +584,19 @@ const Contact = () => {
                     value={formData.phone} 
                     onChange={handleChange} 
                     required
-                    style={contactStyles.input}
+                    disabled={isLoading}
+                    style={{
+                      ...contactStyles.input,
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'text'
+                    }}
                     placeholder="+91 XXXXX XXXXX"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="company" style={contactStyles.label}>
-                    Company Name *
-                  </label>
+                  <label htmlFor="company" style={contactStyles.label}>Company Name *</label>
                   <input 
                     type="text" 
                     id="company" 
@@ -636,7 +604,12 @@ const Contact = () => {
                     value={formData.company} 
                     onChange={handleChange} 
                     required
-                    style={contactStyles.input}
+                    disabled={isLoading}
+                    style={{
+                      ...contactStyles.input,
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'text'
+                    }}
                     placeholder="Your company name"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -646,9 +619,7 @@ const Contact = () => {
 
               <div style={contactStyles.formRow}>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="location" style={contactStyles.label}>
-                    Location of Inspection *
-                  </label>
+                  <label htmlFor="location" style={contactStyles.label}>Location of Inspection *</label>
                   <input 
                     type="text" 
                     id="location" 
@@ -656,48 +627,77 @@ const Contact = () => {
                     value={formData.location} 
                     onChange={handleChange} 
                     required
-                    style={contactStyles.input}
+                    disabled={isLoading}
+                    style={{
+                      ...contactStyles.input,
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'text'
+                    }}
                     placeholder="City, Country"
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div style={contactStyles.formGroup}>
-                  <label htmlFor="userType" style={contactStyles.label}>
-                    Are you an Importer or Exporter? *
-                  </label>
+                  <label htmlFor="userType" style={contactStyles.label}>Are you an Importer or Exporter? *</label>
                   <select 
                     id="userType" 
                     name="userType" 
                     value={formData.userType} 
                     onChange={handleChange} 
                     required
+                    disabled={isLoading}
                     style={{
                       ...contactStyles.select,
-                      color: formData.userType ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)'
+                      color: formData.userType ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
+                      opacity: isLoading ? 0.7 : 1,
+                      cursor: isLoading ? 'not-allowed' : 'pointer'
                     }}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   >
                     <option value="" style={{ color: 'rgba(255, 255, 255, 0.6)', backgroundColor: '#2D3436' }}>Select your role</option>
-                    <option value="importer" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Importer</option>
-                    <option value="exporter" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Exporter</option>
-                    <option value="both" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Both</option>
-                    <option value="other" style={{ color: '#FFFFFF', backgroundColor: '#2D3436', padding: '0.5rem' }}>Other</option>
+                    <option value="importer" style={{ color: '#FFFFFF', backgroundColor: '#2D3436' }}>Importer</option>
+                    <option value="exporter" style={{ color: '#FFFFFF', backgroundColor: '#2D3436' }}>Exporter</option>
+                    <option value="both" style={{ color: '#FFFFFF', backgroundColor: '#2D3436' }}>Both</option>
+                    <option value="other" style={{ color: '#FFFFFF', backgroundColor: '#2D3436' }}>Other</option>
                   </select>
                 </div>
               </div>
 
               <div style={contactStyles.formGroup}>
-                <label htmlFor="additionalDetails" style={contactStyles.label}>
-                  Additional Details
-                </label>
+                <label htmlFor="message" style={contactStyles.label}>Message *</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  value={formData.message} 
+                  onChange={handleChange} 
+                  required
+                  disabled={isLoading}
+                  style={{
+                    ...contactStyles.textarea,
+                    opacity: isLoading ? 0.7 : 1,
+                    cursor: isLoading ? 'not-allowed' : 'text'
+                  }}
+                  placeholder="Tell us about your quality inspection needs and requirements..."
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                />
+              </div>
+
+              <div style={contactStyles.formGroup}>
+                <label htmlFor="additionalDetails" style={contactStyles.label}>Additional Details</label>
                 <textarea 
                   id="additionalDetails" 
                   name="additionalDetails" 
                   value={formData.additionalDetails} 
                   onChange={handleChange} 
-                  style={contactStyles.textarea}
+                  disabled={isLoading}
+                  style={{
+                    ...contactStyles.textarea,
+                    opacity: isLoading ? 0.7 : 1,
+                    cursor: isLoading ? 'not-allowed' : 'text'
+                  }}
                   placeholder="Any additional information about your cargo, specific requirements, timeline, or other details..."
                   onFocus={handleFocus}
                   onBlur={handleBlur}
@@ -706,29 +706,22 @@ const Contact = () => {
 
               <button 
                 type="submit" 
-                disabled={isSubmitted}
-                onClick={handleSubmit}
-                style={{
-                  ...contactStyles.submitBtn,
-                  opacity: isSubmitted ? 0.8 : 1,
-                  background: isSubmitted ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'
-                }}
-                onMouseOver={(e) => {
-                  if (!isSubmitted && !isMobile) {
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-                    e.target.style.border = '1px solid rgba(255, 255, 255, 0.3)';
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (!isSubmitted && !isMobile) {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                    e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-                  }
-                }}
+                disabled={isLoading || isSubmitted}
+                style={contactStyles.submitBtn}
               >
-                {isSubmitted ? (
+                {isLoading ? (
+                  <>
+                    <div style={{
+                      width: isMobile ? '16px' : '20px',
+                      height: isMobile ? '16px' : '20px',
+                      border: '2px solid rgba(255, 255, 255, 0.3)',
+                      borderTop: '2px solid #FFFFFF',
+                      borderRadius: '50%',
+                      animation: 'spin 1s linear infinite'
+                    }} />
+                    <span>Sending...</span>
+                  </>
+                ) : isSubmitted ? (
                   <>
                     <CheckCircle size={isMobile ? 18 : 20} /> 
                     <span>Message Sent!</span>
@@ -740,7 +733,7 @@ const Contact = () => {
                   </>
                 )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
